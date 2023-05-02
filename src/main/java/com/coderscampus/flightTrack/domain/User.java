@@ -22,31 +22,22 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class User {
 	
-	private Long userId;
-	@Column(name = "username", unique = true)
+	private Long id;
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
-	@Column(name = "created_date", nullable = false, updatable = false)
-    @CreationTimestamp
-	private LocalDate createdDate;
+	private String email;
+	private String phone;
+	private LocalDate registeredDate;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(
-		name = "user_roles",
-		joinColumns = @JoinColumn(name = "user_id"),
-		inverseJoinColumns = @JoinColumn(name="role_id")
-			)
-	
-	 private LinkedHashSet<Role> roles=new LinkedHashSet<Role>(); 
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;
@@ -72,18 +63,30 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public LocalDate getCreatedDate() {
-		return createdDate;
+	public String getEmail() {
+		return email;
 	}
-	public void setCreatedDate(LocalDate createdDate) {
-		this.createdDate = createdDate;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public LocalDate getRegisteredDate() {
+		return registeredDate;
+	}
+	public void setRegisteredDate(LocalDate registeredDate) {
+		this.registeredDate = registeredDate;
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", createdDate=" + createdDate + ", roles=" + roles + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", registeredDate="
+				+ registeredDate + "]";
 	}
-	
 	
 	
 	

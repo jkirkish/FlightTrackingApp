@@ -12,6 +12,7 @@ public class Airline {
 	
 	private Long AirlineId;
 	private String AirlineName;
+	private String IcaoCode;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getAirlineId() {
@@ -25,6 +26,12 @@ public class Airline {
 	}
 	public void setAirlineName(String airlineName) {
 		AirlineName = airlineName;
+	}
+	public String getIcaoCode() {
+		return IcaoCode;
+	}
+	public void setIcaoCode(String icaoCode) {
+		IcaoCode = icaoCode;
 	}
 	@Override
 	public String toString() {

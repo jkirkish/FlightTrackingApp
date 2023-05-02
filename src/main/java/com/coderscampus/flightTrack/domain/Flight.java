@@ -13,6 +13,11 @@ import jakarta.persistence.Table;
 public class Flight {
 	
 	private Long flightId;
+	private Long user;
+	private boolean departed;
+	private boolean arrived;
+	private boolean enroute;
+	private String airline;
 	private String departureAirport;
 	private String arrivalAirport;
 	private LocalDateTime departure;
@@ -22,37 +27,80 @@ public class Flight {
 	public Long getFlightId() {
 		return flightId;
 	}
-	public void setFlightId(Long flightId) {
-		this.flightId = flightId;
+
+	public Long getUser() {
+		return user;
 	}
+
+	public void setUser(Long user) {
+		this.user = user;
+	}
+
+	public boolean isDeparted() {
+		return departed;
+	}
+
+	public void setDeparted(boolean departed) {
+		this.departed = departed;
+	}
+
+	public boolean isArrived() {
+		return arrived;
+	}
+
+	public void setArrived(boolean arrived) {
+		this.arrived = arrived;
+	}
+
+	public boolean isEnroute() {
+		return enroute;
+	}
+
+	public void setEnroute(boolean enroute) {
+		this.enroute = enroute;
+	}
+
+	public String getAirline() {
+		return airline;
+	}
+
+	public void setAirline(String airline) {
+		this.airline = airline;
+	}
+
 	public String getDepartureAirport() {
 		return departureAirport;
 	}
+
 	public void setDepartureAirport(String departureAirport) {
 		this.departureAirport = departureAirport;
 	}
+
 	public String getArrivalAirport() {
 		return arrivalAirport;
 	}
+
 	public void setArrivalAirport(String arrivalAirport) {
 		this.arrivalAirport = arrivalAirport;
 	}
+
 	public LocalDateTime getDeparture() {
 		return departure;
 	}
+
 	public void setDeparture(LocalDateTime departure) {
 		this.departure = departure;
 	}
+
 	public LocalDateTime getArrival() {
 		return arrival;
 	}
+
 	public void setArrival(LocalDateTime arrival) {
 		this.arrival = arrival;
 	}
-	@Override
-	public String toString() {
-		return "Flight [flightId=" + flightId + ", departureAirport=" + departureAirport + ", arrivalAirport="
-				+ arrivalAirport + ", departure=" + departure + ", arrival=" + arrival + "]";
-	}
 
+	public void setFlightId(Long flightId) {
+		this.flightId = flightId;
+	}
 }

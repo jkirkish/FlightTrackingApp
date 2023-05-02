@@ -11,46 +11,56 @@ import jakarta.persistence.Table;
 public class Airports {
 
 	private Long airportId;
-	private String fourLetterAirportId;
-	private String airportRegularName;
-	private String City;
-	private String Country;
+	private String airportName;
+	private String icaoCode;
+	private String city;
+	private String country;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getAirportId() {
 		return airportId;
 	}
+
+	public String getAirportName() {
+		return airportName;
+	}
+
+	public void setAirportName(String airportName) {
+		this.airportName = airportName;
+	}
+
+	public String getIcaoCode() {
+		return icaoCode;
+	}
+
+	public void setIcaoCode(String icaoCode) {
+		this.icaoCode = icaoCode;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	public void setAirportId(Long airportId) {
 		this.airportId = airportId;
 	}
-	public String getFourLetterAirportId() {
-		return fourLetterAirportId;
-	}
-	public void setFourLetterAirportId(String fourLetterAirportId) {
-		this.fourLetterAirportId = fourLetterAirportId;
-	}
-	public String getAirportRegularName() {
-		return airportRegularName;
-	}
-	public void setAirportRegularName(String airportRegularName) {
-		this.airportRegularName = airportRegularName;
-	}
-	public String getCity() {
-		return City;
-	}
-	public void setCity(String city) {
-		City = city;
-	}
-	public String getCountry() {
-		return Country;
-	}
-	public void setCountry(String country) {
-		Country = country;
-	}
+
 	@Override
 	public String toString() {
-		return "Airports [airportId=" + airportId + ", fourLetterAirportId=" + fourLetterAirportId
-				+ ", airportRegularName=" + airportRegularName + ", City=" + City + ", Country=" + Country + "]";
+		return "Airports [airportId=" + airportId + ", airportName=" + airportName + ", icaoCode=" + icaoCode
+				+ ", city=" + city + ", country=" + country + "]";
 	}
 	
 	
