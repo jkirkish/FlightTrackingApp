@@ -1,23 +1,18 @@
 package com.coderscampus.flightTrack.domain;
 //https://www.javatpoint.com/collections-in-java
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
+//https://www.baeldung.com/spring-boot-h2-database
+//http://localhost:8080/h2-console
 @Entity
 @Table(name = "users")
 public class User {
@@ -30,6 +25,7 @@ public class User {
 	private String email;
 	private String phone;
 	private LocalDate registeredDate;
+	private List<Flight> flights = new ArrayList<>();
 	
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,6 +77,13 @@ public class User {
 	}
 	public void setRegisteredDate(LocalDate registeredDate) {
 		this.registeredDate = registeredDate;
+	}
+	@OneToMany(mappedBy = "user")
+	public List<Flight> getFlights() {
+		return flights;
+	}
+	public void setFlights(List<Flight> flights) {
+		this.flights = flights;
 	}
 	@Override
 	public String toString() {

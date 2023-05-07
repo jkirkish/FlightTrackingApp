@@ -24,14 +24,14 @@ public class UserController {
 		return "register";
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/users")
 	public String getAllUsers(ModelMap model) {
 		List<User> users = userService.findAllUsers();
 		model.put("user", users);
 		if (users.size() == 1) {
 			model.put("user", users.iterator().next());
 		}
-		return "user";
+		return "users";
 	}
 
 }
