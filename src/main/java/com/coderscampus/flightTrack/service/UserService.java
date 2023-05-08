@@ -18,7 +18,6 @@ public class UserService {
 	private UserRepository userRepo;
 	
 	public User findById(Long userId) {
-		
 		Optional<User>userOpt = userRepo.findById(userId);
 		return userOpt.orElse(new User());
 	}
@@ -32,13 +31,5 @@ public class UserService {
 		return userRepo.save(user);
 	}
 	
-	public User update(User user) {
-			return null;
-		}
-
-	
-	public void delete(Long userId) {
-		userRepo.deleteById(userId);
-	}
 	
 }

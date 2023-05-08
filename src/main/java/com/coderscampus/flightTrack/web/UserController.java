@@ -1,5 +1,6 @@
 package com.coderscampus.flightTrack.web;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.coderscampus.flightTrack.domain.User;
 import com.coderscampus.flightTrack.service.UserService;
@@ -34,4 +35,10 @@ public class UserController {
 		return "users";
 	}
 
+	@GetMapping("/users/{userId}")
+	public String getOneUser (ModelMap model, @PathVariable Long userId) {
+		User user = userService.findById(userId);
+		model.put("users", Arrays.asList(user));
+		return "users";
+	}
 }
