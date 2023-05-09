@@ -24,8 +24,19 @@ public class User {
 	private String lastName;
 	private String email;
 	private String phone;
-	private LocalDate registeredDate;
+	private LocalDate registrationDate
 	private List<Flight> flights = new ArrayList<>();
+	
+	
+	public User(String username, String password, String firstname, String lastname, String email, String phone, LocalDate registrationDate) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.registrationDate = registrationDate;
+    }
 	
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,10 +84,10 @@ public class User {
 		this.phone = phone;
 	}
 	public LocalDate getRegisteredDate() {
-		return registeredDate;
+		return registrationDate;
 	}
 	public void setRegisteredDate(LocalDate registeredDate) {
-		this.registeredDate = registeredDate;
+		this.registrationDate = registrationDate;
 	}
 	@OneToMany(mappedBy = "user")
 	public List<Flight> getFlights() {
@@ -89,7 +100,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", registeredDate="
-				+ registeredDate + "]";
+				+ registrationDate + "]";
 	}
 	
 	

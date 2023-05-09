@@ -19,7 +19,7 @@ public class UserService {
 	
 	public User findById(Long userId) {
 		Optional<User>userOpt = userRepo.findById(userId);
-		return userOpt.orElse(new User());
+		return userOpt.orElse(new User(null, null, null, null, null, null, null));
 	}
 	
 	public List<User> findAllUsers() {
@@ -27,7 +27,7 @@ public class UserService {
 	}
 
 	public User createUser() {
-		User user = new User();
+		User user = new User(null, null, null, null, null, null, null);
 		return userRepo.save(user);
 	}
 	
