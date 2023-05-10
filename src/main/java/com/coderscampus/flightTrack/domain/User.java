@@ -24,7 +24,7 @@ public class User {
 	private String lastName;
 	private String email;
 	private String phone;
-	private LocalDate registrationDate
+	private LocalDate registrationDate;
 	private List<Flight> flights = new ArrayList<>();
 	
 	
@@ -38,6 +38,7 @@ public class User {
         this.registrationDate = registrationDate;
     }
 	
+			
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {

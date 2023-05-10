@@ -4,8 +4,12 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.coderscampus.flightTrack.domain.User;
 
 @Controller
 public class RegistrationController {
@@ -36,4 +40,9 @@ public class RegistrationController {
         // Redirect to the registration confirmation page
         return "registrationConfirmation";
     }
+    @GetMapping("/register")
+	public String getCreateUser(ModelMap model) {
+		model.put("user", new User("", "", "","","","",null));
+		return "register";
+	}
 }
