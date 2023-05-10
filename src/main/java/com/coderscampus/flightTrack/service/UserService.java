@@ -1,5 +1,6 @@
 package com.coderscampus.flightTrack.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +18,38 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepo;
 	
+	
+	public List<User> findByUsername(String username){
+		return userRepo.findByUsername(username);
+	}
+	public List<User> findByPassword(String password){
+		return userRepo.findByPassword(password);
+	}
+	public List<User> findByEmail(String email){
+		return userRepo.findByemail(email);
+	}
+	public List<User> findByPhone(String phone){
+		return userRepo.findByphone(phone);
+	}
+	public List<User> firstNameAndUsername(String firstName, String username){
+		return userRepo.findByfirstNameAndUsername(firstName, username);
+	}
+	public List<User> firstNameAndLastname(String lastName, String username){
+		return userRepo.findByfirstNameAndUsername(lastName, username);
+	}
+	public List<User> findByRegistrationDateBetween(LocalDate data1, LocalDate date2){
+		return userRepo.findByRegistrationDateBetween(data1, date2);
+	}
+	public User findExactlyOneUserByRegistrationDate(LocalDate date) {
+		List<User> users = userRepo.findExactlyOneUserByRegistrationDate(date);
+		if(users.size() > 0)
+			return users.get(0);
+		else
+		return new User();
+	}
 	public User findById(Long userId) {
 		Optional<User>userOpt = userRepo.findById(userId);
-		return userOpt.orElse(new User(null, null, null, null, null, null, null));
+		return userOpt.orElse(new User());
 	}
 	
 	public List<User> findAllUsers() {
@@ -27,7 +57,7 @@ public class UserService {
 	}
 
 	public User createUser() {
-		User user = new User(null, null, null, null, null, null, null);
+		User user = new User();
 		return userRepo.save(user);
 	}
 

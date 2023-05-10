@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 //https://www.baeldung.com/spring-boot-h2-database
 //http://localhost:8080/h2-console
@@ -25,18 +26,8 @@ public class User {
 	private String email;
 	private String phone;
 	private LocalDate registrationDate;
+	private Address address;
 	private List<Flight> flights = new ArrayList<>();
-	
-	
-	public User(String username, String password, String firstname, String lastname, String email, String phone, LocalDate registrationDate) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstname;
-        this.lastName = lastname;
-        this.email = email;
-        this.phone = phone;
-        this.registrationDate = registrationDate;
-    }
 	
 			
 	
@@ -97,12 +88,20 @@ public class User {
 	public void setFlights(List<Flight> flights) {
 		this.flights = flights;
 	}
+	@OneToOne(mappedBy = "user")
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", registeredDate="
-				+ registrationDate + "]";
+				+ ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", registrationDate="
+				+ registrationDate + ", address=" + address + ", flights=" + flights + "]";
 	}
+	
 	
 	
 	
