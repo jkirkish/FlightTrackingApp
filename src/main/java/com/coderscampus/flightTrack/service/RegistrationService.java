@@ -26,7 +26,7 @@ public class RegistrationService {
 
         // Do additional validation here, such as checking if the email address is valid
 
-        User user = new User(username, password, firstname, lastname, email, phone, registrationDate);
+        User user = new User();
         users.add(user);
     }
 }
