@@ -23,7 +23,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
+	@GetMapping("/index")
+	public String getHomePage() {
+		return "index";
+	}
+	@GetMapping("/login")
+	public String getLoginPage() {
+		return "login";
+	}
 
 	@GetMapping("/users")
 	public String getAllUsers(ModelMap model) {
@@ -42,10 +49,6 @@ public class UserController {
 		model.put("users", Arrays.asList(user));
 		return "users";
 	}
-	 @GetMapping("/registration/{registrationDate}")
-	    public User getUsersByRegistrationDate(@PathVariable("registrationDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate registrationDate) {
-	        return userService.findExactlyOneUserByRegistrationDate(registrationDate);
-	    }
 	@PostMapping("/users/{userId}")
 	public String postOneUser(@PathVariable Long userId, User user) {
 		userService.saveUser(user);

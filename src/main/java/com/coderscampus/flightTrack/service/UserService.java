@@ -37,16 +37,6 @@ public class UserService {
 	public List<User> firstNameAndLastname(String lastName, String username){
 		return userRepo.findByfirstNameAndUsername(lastName, username);
 	}
-	public List<User> findByRegistrationDateBetween(LocalDate data1, LocalDate date2){
-		return userRepo.findByRegistrationDateBetween(data1, date2);
-	}
-	public User findExactlyOneUserByRegistrationDate(LocalDate date) {
-		List<User> users = userRepo.findExactlyOneUserByRegistrationDate(date);
-		if(users.size() > 0)
-			return users.get(0);
-		else
-		return new User();
-	}
 	public User findById(Long userId) {
 		Optional<User>userOpt = userRepo.findById(userId);
 		return userOpt.orElse(new User());

@@ -36,11 +36,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	//select * from users where lastname = :lastName and username 
 	List<User>findBylastNameAndUsername(String lastName, String username);
 	
-	//select * from users where registrationDate between LocalDate 1 and LocalDate date2
-	List<User> findByRegistrationDateBetween(LocalDate data1, LocalDate date2);
-
-	@Query("select u from User u where registrationDate; = :registrationDate;")
-	List<User> findExactlyOneUserByRegistrationDate(LocalDate registrationDate);
+	
 	
 	
 }
