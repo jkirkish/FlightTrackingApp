@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -88,7 +89,7 @@ public class User {
 	public void setFlights(List<Flight> flights) {
 		this.flights = flights;
 	}
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user",cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REMOVE},orphanRemoval = true)
 	public Address getAddress() {
 		return address;
 	}
