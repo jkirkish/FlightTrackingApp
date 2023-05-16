@@ -24,6 +24,7 @@ public class Address {
     private String city;
     private String state;
     private String zip;
+    @Column(name = "Country")
     private String country;
    
     @Id

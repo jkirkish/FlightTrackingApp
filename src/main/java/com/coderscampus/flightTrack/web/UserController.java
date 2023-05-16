@@ -50,7 +50,9 @@ public class UserController {
 		return "users";
 	}
 	@PostMapping("/users/{userId}")
-	public String postOneUser(@PathVariable Long userId, User user) {
+	public String postOneUser(@PathVariable Long userId, User user,@RequestParam("registrationDate") String registrationDate) {
+		LocalDate registration = LocalDate.parse(registrationDate);
+		user.setRegisteredDate(registration);
 		userService.saveUser(user);
 		return "redirect:/users/" + user.getId();
 		
