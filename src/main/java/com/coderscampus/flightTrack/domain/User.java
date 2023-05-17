@@ -94,11 +94,11 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public LocalDate getRegisteredDate() {
+	public LocalDate getRegistrationDate() {
 		return registrationDate;
 	}
 	
-	public void setRegisteredDate(LocalDate registeredDate) {
+	public void setRegistrationDate(LocalDate registeredDate) {
 		this.registrationDate = registrationDate;
 	}
 	@OneToMany(mappedBy = "user")

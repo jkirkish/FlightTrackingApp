@@ -36,7 +36,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	//select * from users where lastname = :lastName and username 
 	List<User>findBylastNameAndUsername(String lastName, String username);
 
-	List<User> findByRegisteredDate(LocalDate registeredDate);
+	
 	
 	
 	

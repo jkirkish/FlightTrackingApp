@@ -46,9 +46,7 @@ public class UserService {
 	public List<User> getAllUsers() {
         return userRepo.findAll();
     }
-	public List<User> getUsersByRegisteredDate(LocalDate registeredDate){
-		return userRepo.findByRegisteredDate(registeredDate);
-	}
+	
 	
 	
 }
