@@ -5,17 +5,25 @@
   <title>Registration Form</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+    /* Background image styles */
+    body {
+    		background-image: url("https://picsum.photos/1200/800"); 
+			background-size: cover;
+			background-repeat: no-repeat;
+			font-family: Arial, sans-serif;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Flight Tracking </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+     <label class="navbar-brand" for="flight-tracking">Flight Tracking</label>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/index">Index</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
         </li>
@@ -63,8 +71,7 @@
 
     <div class="form-group">
       <label for="registrationDate">Registration Date</label>
-      <input type="text" class="form-control" id="registrationDate" name="registrationDate" th:field="${user.registrationDate}" 
-      th:value="${#dates.format(user.registrationDate, 'MM/dd/yyyy')}"    required>
+      <input type="date" class="form-control" id="registrationDate" name="registrationDate" th:field="*{user.registrationDate}" required>
     </div>
 
           <button type="submit" class="btn btn-primary">Register</button>

@@ -3,6 +3,7 @@ package com.coderscampus.flightTrack.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,21 +43,12 @@ public class UserService {
 		return userOpt.orElse(new User());
 	}
 	
-	public List<User> findAllUsers() {
-		return userRepo.findAll();
+	public List<User> getAllUsers() {
+        return userRepo.findAll();
+    }
+	public List<User> getUsersByRegisteredDate(LocalDate registeredDate){
+		return userRepo.findByRegisteredDate(registeredDate);
 	}
-
-	public User createUser() {
-		User user = new User();
-		return userRepo.save(user);
-	}
-
-	public User saveUser(User user) {
-		return userRepo.save(user);
-		
-	}
-	public void delete(Long userId) {
-		userRepo.deleteById(userId);
-	}
+	
 	
 }

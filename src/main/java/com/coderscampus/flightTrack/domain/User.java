@@ -1,6 +1,7 @@
 package com.coderscampus.flightTrack.domain;
 //https://www.javatpoint.com/collections-in-java
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,23 @@ public class User {
 	
 			
 	
+	
+    public User() {
+    	
+    }
+    
+    public User(String username2, String password2, String firstName2, String lastName2, String email2, String phone2,
+			LocalDate registrationDate2) {
+		
+         this.username = username;
+         this.password = password2;
+         this.firstName = firstName2;
+         this.lastName = lastName2;
+         this.email = email2;
+         this.phone = phone;
+         this.registrationDate = registrationDate2;
+         
+	}
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
@@ -79,6 +97,7 @@ public class User {
 	public LocalDate getRegisteredDate() {
 		return registrationDate;
 	}
+	
 	public void setRegisteredDate(LocalDate registeredDate) {
 		this.registrationDate = registrationDate;
 	}
@@ -96,6 +115,8 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
