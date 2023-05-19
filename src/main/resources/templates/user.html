@@ -14,7 +14,7 @@
 	 <style>
     /* Background image styles */
     body {
-    		background-image: url("https://picsum.photos/1200/800"); 
+    		background-color:white;
 			background-size: cover;
 			background-repeat: no-repeat;
 			font-family: Arial, sans-serif;
@@ -44,8 +44,8 @@
   </nav>
 	<div class="container">
 		<h1>User Information Update Form</h1>
-		<form th:action="" th:object="${user}" method="post">
-			<input type="hidden" th:field="*{userId}">
+		<form th:action="@{/users/{userId}(userId=${user.id})}"  method="post">
+			<input type="hidden" th:field="${user.id}">
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input type="text" class="form-control" id="username" th:field="${user.username}" placeholder="Enter username">

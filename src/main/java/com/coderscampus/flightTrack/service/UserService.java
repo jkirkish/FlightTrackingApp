@@ -43,10 +43,13 @@ public class UserService {
 		return userOpt.orElse(new User());
 	}
 	
-	public List<User> getAllUsers() {
+	public List<User> findAll() {
         return userRepo.findAll();
     }
-	
+	public User findBydId(Long id) {
+		Optional<User> userOpt = userRepo.findById(id);
+		return userOpt.orElse(new User());
+	}
 	
 	
 }

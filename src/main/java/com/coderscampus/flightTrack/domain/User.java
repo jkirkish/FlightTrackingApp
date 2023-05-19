@@ -32,24 +32,6 @@ public class User {
 	private List<Flight> flights = new ArrayList<>();
 	
 			
-	
-	
-    public User() {
-    	
-    }
-    
-    public User(String username2, String password2, String firstName2, String lastName2, String email2, String phone2,
-			LocalDate registrationDate2) {
-		
-         this.username = username;
-         this.password = password2;
-         this.firstName = firstName2;
-         this.lastName = lastName2;
-         this.email = email2;
-         this.phone = phone;
-         this.registrationDate = registrationDate2;
-         
-	}
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
