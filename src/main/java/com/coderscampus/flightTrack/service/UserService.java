@@ -50,6 +50,10 @@ public class UserService {
 		Optional<User> userOpt = userRepo.findById(id);
 		return userOpt.orElse(new User());
 	}
+	public void createUser(User user) {
+		userRepo.save(user);
+		
+	}
 	
 	
 }

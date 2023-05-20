@@ -36,8 +36,6 @@ public class UserController {
 		return "users";
 	}
 	
-	
-	
 	@GetMapping("/users/{id}")
 	public String getOneUser (ModelMap model, @PathVariable Long id) {
 		User user = userService.findById(id);
@@ -45,6 +43,16 @@ public class UserController {
 		return "user";
 	}
 	
+	@GetMapping("/register")
+	public String getCreateUser(ModelMap model) {
+		model.put("user", new User());
+		return "register";
+	}
+	@PostMapping("/register")
+	public String postCreateUser(User user) {
+		userService.createUser(user);
+		return "redirect:/register";
+	}
 	
    
 }
