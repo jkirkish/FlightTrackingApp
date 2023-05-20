@@ -15,7 +15,6 @@ public class Address {
    
 
     private Long userId;
-    
 	private User user;
     @Column(name = "address_line_1")
     private String addressLine1;
@@ -34,8 +33,8 @@ public class Address {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	@OneToOne
-	@MapsId
+	@OneToOne  
+	@MapsId 
 	@JoinColumn(name="user_id")
 	public User getUser() {
 		return user;
@@ -43,12 +42,14 @@ public class Address {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@Column(length=125)
 	public String getAddressLine1() {
 		return addressLine1;
 	}
 	public void setAddressLine1(String addressLine1) {
 		this.addressLine1 = addressLine1;
 	}
+	@Column(length=125)
 	public String getAddressLine2() {
 		return addressLine2;
 	}
@@ -58,21 +59,25 @@ public class Address {
 	public String getCity() {
 		return city;
 	}
+	@Column(length=50)
 	public void setCity(String city) {
 		this.city = city;
 	}
+	@Column(length=50)
 	public String getState() {
 		return state;
 	}
 	public void setState(String state) {
 		this.state = state;
 	}
+	@Column(length=50)
 	public String getZip() {
 		return zip;
 	}
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+	@Column(length=50)
 	public String getCountry() {
 		return country;
 	}

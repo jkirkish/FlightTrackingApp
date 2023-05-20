@@ -50,9 +50,17 @@ public class UserController {
 	}
 	@PostMapping("/register")
 	public String postCreateUser(User user) {
-		userService.createUser(user);
+		userService.saveUser(user);
 		return "redirect:/register";
 	}
-	
-   
+	@PostMapping("/users/{userId}")
+	public String postOneUser(User user) {
+		userService.saveUser(user);
+		return "redirect:/users/" + user.getId();
+	}
+   @PostMapping("/users/{userId}/delete")
+   public String postDeleteUser(@PathVariable Long userId) {
+	   userService.delete(userId);
+	   return "redirect:/users";
+   }
 }

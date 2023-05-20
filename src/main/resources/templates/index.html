@@ -25,8 +25,25 @@
     }
     
     .highlight {
-      color: white;
+      color: yellow;
       padding: 10px;
+      /* Special effects */
+      animation: glowing 2s infinite;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Animation keyframes for glowing effect */
+    @keyframes glowing {
+      0% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+      }
+      100% {
+        opacity: 0.5;
+      }
     }
   </style>
 </head>

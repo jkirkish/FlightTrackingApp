@@ -8,11 +8,10 @@
         <style>
     /* Background image styles */
     body {
-    		background-image: url("https://picsum.photos/1200/800"); 
-			background-size: cover;
-			background-repeat: no-repeat;
+    		
+			
 			font-family: Arial, sans-serif;
-			color: white;	
+				
     }
     .navbar-brand,
     .navbar-nav .nav-link {
@@ -21,7 +20,7 @@
     
    
     label {
-      color: white; 
+      color: black; 
     }
     
  
@@ -60,13 +59,13 @@
   <form action="" method="post">
 
     <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" name="username" required>
+      <label for="username">Username,</label>
+      <input type="text" class="form-control" id="username" name="username" th:field="${user.username}" required>
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" name="password" th:field="${user.username}" required>
+      <input type="password" class="form-control" id="password" name="password" th:field="${user.password}" required>
     </div>
 
     <div class="form-group">
@@ -91,7 +90,7 @@
 
     <div class="form-group">
       <label for="registrationDate">Registration Date</label>
-      <input type="date" class="form-control" id="registrationDate" name="registrationDate" th:field="${user.registrationDate}" required>
+      <input type="date" class="form-control" name="registrationDate" th:field="${user.registrationDate}" required>
     </div>
 
           <button type="submit" class="btn btn-primary">Register</button>

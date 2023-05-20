@@ -80,7 +80,7 @@ public class User {
 		return registrationDate;
 	}
 	
-	public void setRegistrationDate(LocalDate registeredDate) {
+	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 	@OneToMany(mappedBy = "user")

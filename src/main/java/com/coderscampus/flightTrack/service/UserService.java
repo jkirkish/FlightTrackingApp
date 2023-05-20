@@ -50,10 +50,15 @@ public class UserService {
 		Optional<User> userOpt = userRepo.findById(id);
 		return userOpt.orElse(new User());
 	}
-	public void createUser(User user) {
+	public void saveUser(User user) {
 		userRepo.save(user);
 		
 	}
+	public void delete(Long userId) {
+		userRepo.deleteById(userId);
+		
+	}
+	
 	
 	
 }
