@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coderscampus.flightTrack.domain.Address;
 import com.coderscampus.flightTrack.domain.User;
 import com.coderscampus.flightTrack.repository.UserRepository;
 
@@ -50,15 +51,54 @@ public class UserService {
 		Optional<User> userOpt = userRepo.findById(id);
 		return userOpt.orElse(new User());
 	}
-	public void saveUser(User user) {
-		userRepo.save(user);
+	public User saveUser(User user) {
+		if(user.getAddress() == null) {
+			Address address = new Address();
+			address.setAddressLine1("");
+			address.setAddressLine2("");
+			address.setCity("");
+			address.setCountry("");
+			address.setState("");
+			address.setZip("");
+			address.setUser(user);
+			address.setUserId((user.getId()));
+			user.setAddress(address);
+		}
+		else {
+			Address address = user.getAddress();
+			address.setUser(user);
+			address.setUserId(user.getId());
+			user.setAddress(user.getAddress());
+		}
+		return userRepo.save(user);
 		
 	}
 	public void delete(Long userId) {
 		userRepo.deleteById(userId);
 		
 	}
+	public Boolean loginValidation(String username, String password)
+	{    
+		boolean result;
+		
+		String matchingUsernames = users.stream()
+		        .filter(user -> user.getUsername().equalsIgnoreCase(searchUsername))
+		        .map(User::getUsername);
+		
+		String matchingPasswords = users.stream()
+		        .filter(user -> user.getPassword().equalsIgnoreCase(searchPassword))
+		        .map(User::getPassword);
+		
+		if(username.equals(matchingUsernames)&& password.equalsIgnoreCase(matchingPasswords))
+		{
+          result = true;   			
+		}else
+		{
+			result = false;
+		}
+		
+		 return result;
+	}
 	
-	
-	
+
 }

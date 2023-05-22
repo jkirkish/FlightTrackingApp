@@ -1,5 +1,7 @@
 package com.coderscampus.flightTrack.domain;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,7 +16,7 @@ public class Address {
 
    
 
-    private Long userId;
+    private Long id;
 	private User user;
     @Column(name = "address_line_1")
     private String addressLine1;
@@ -28,11 +30,12 @@ public class Address {
    
     @Id
     public Long getUserId() {
-		return userId;
+		return id;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUserId(Long id) {
+		this.id = id;
 	}
+	
 	@OneToOne  
 	@MapsId 
 	@JoinColumn(name="user_id")
@@ -86,10 +89,9 @@ public class Address {
 	}
 	@Override
 	public String toString() {
-		return "Address [userId=" + userId + ", user=" + user + ", addressLine1=" + addressLine1 + ", addressLine2="
+		return "Address [userId=" + id + ", user=" + user + ", addressLine1=" + addressLine1 + ", addressLine2="
 				+ addressLine2 + ", city=" + city + ", state=" + state + ", zip=" + zip + ", country=" + country + "]";
 	}
 	
-
     
 }
