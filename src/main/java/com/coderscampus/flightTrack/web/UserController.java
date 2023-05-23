@@ -20,14 +20,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/index")
-	public String getHomePage() {
-		return "index";
-	}
-	@GetMapping("/login")
-	public String getLoginPage() {
-		return "login";
-	}
+	
 
 	@GetMapping("/users")
     public String getUsers(ModelMap model) {
@@ -44,9 +37,9 @@ public class UserController {
 		return "user";
 	}
 	
-	@GetMapping("/RegisterConfirmation")
+	@GetMapping("/registerConfirmation")
 	public String registeredSuccesful() {
-		return "RegisterConfirmation";
+		return "registerConfirmation";
 		
 	}
 	
@@ -58,7 +51,7 @@ public class UserController {
 	@PostMapping("/register")
 	public String postCreateUser(User user) {
 		userService.saveUser(user);
-		return "redirect:/RegisterConfirmation";
+		return "redirect:/registerConfirmation";
 	}
 	@PostMapping("/users/{userId}")
 	public String postOneUser(User user) {
@@ -70,16 +63,5 @@ public class UserController {
 	   userService.delete(userId);
 	   return "redirect:/users";
    }
-   @PostMapping("/login")
-   public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String password){
-	   
-	   password.equalsIgnoreCase(userService.findByPassword(password));
-	   userService.findByUsername(username)
-//	   
-//	   if (username.equalsIgnoreCase("username") && password.equalsIgnoreCase("password")) {
-//	        return "redirect:/index"; // Redirect to the home page if login is successful
-//	    } else {
-//	        return "redirect:/login"; // Redirect to the login page if login fails
-//	    }
-   }
+   
 }
