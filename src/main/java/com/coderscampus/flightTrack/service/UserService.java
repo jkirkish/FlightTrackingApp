@@ -83,20 +83,4 @@ public class UserService {
 
 	}
 
-//	public boolean isValidLogin(String username, String password) {
-//		List<User> users = userRepo.findByUsername(username);
-//		boolean result = false;
-//		if (users.isEmpty()) {
-//			result = false; // No user found with the given username
-//		} else {
-//			User user = users.get(0);
-//			if (username.equalsIgnoreCase(user.getUsername()) && password.equals(user.getPassword())) {
-//				result = true;
-//			}
-//
-//		}
-//		return result;
-//
-//	}
-
 }
