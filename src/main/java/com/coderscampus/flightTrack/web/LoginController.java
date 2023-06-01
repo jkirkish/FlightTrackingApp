@@ -18,6 +18,10 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	@GetMapping("/admin")
+	public String getAdminPage() {
+		return "admin";
+	}
 	
 	@GetMapping("/index")
 	public String getHomePage() {
