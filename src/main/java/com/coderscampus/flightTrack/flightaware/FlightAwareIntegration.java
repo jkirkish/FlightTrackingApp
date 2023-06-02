@@ -1,78 +1,63 @@
 package com.coderscampus.flightTrack.flightaware;
 
-import java.net.URI;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class FlightAwareIntegration {
 	
-//	static String AEROAPI_BASE_URL = "https://aeroapi.flightaware.com/aeroapi";
-//    static String AEROAPI_KEY = "";
-//	
-//	@Test
-//	public void callAirportId() {
-//		
-//		RestTemplate rt = new RestTemplate();
-//		URI uri = UriComponentsBuilder.fromHttpUrl("https://aeroapi.flightaware.com/aeroapi/airports/{KIAH}")
-//		                    .queryParam("airport_code*",String.class)
-//		                    .queryParam("alternate_ident",String.class)
-//		                    .queryParam("code_icao",String.class)
-//		                    .queryParam("code_lid",String.class)
-//		                    .queryParam("name",String.class)
-//		                    .queryParam("type","enum")
-//		                    .queryParam("elevation",Integer.class)
-//		                    .queryParam("city",String.class)
-//		                    .queryParam("state",String.class)
-//		                    .queryParam("longitude",Double.class)
-//		                    .queryParam("latitude",Double.class)
-//		                    .queryParam("timezone",String.class)
-//		                    .queryParam("country_code",String.class)
-//		                    //.queryParam("wiki_url",uri)
-//		                    //.queryParam("airport_flights_url",uri)
-//		                    .queryParam("apikey","AEROAPI_KEY")
-//		                    .build()
-//		                    .toUri();
-//		ResponseEntity<String> response = rt.getForEntity(uri, String.class);
-//		System.out.println(response);
-//	}
+	
+		public static void main(String[] args) {
+	        String baseUrl = "https://aeroapi.flightaware.com/aeroapi";
+	        String apiKey = "";//"YOUR_API_KEY"; // Replace with your actual API key
+
+	        // Example request to get the canonical code for an airport
+	        String airportId = "KIAH"; // Replace with the desired airport ID
+	        String airportCanonicalUrl = baseUrl + "/airports/" + airportId + "/canonical";
+	        makeApiRequest(airportCanonicalUrl, apiKey);
+
+	        // Example request to get the canonical code for a flight
+	        String flightIdent = "UAL93"; // Replace with the desired flight ident
+	        String flightCanonicalUrl = baseUrl + "/flights/" + flightIdent + "/canonical";
+	        makeApiRequest(flightCanonicalUrl, apiKey);
+
+	        // Example request to get the canonical code for an operator
+	        String operatorId = "UAL"; // Replace with the desired operator ID
+	        String operatorCanonicalUrl = baseUrl + "/operators/" + operatorId + "/canonical";
+	        makeApiRequest(operatorCanonicalUrl, apiKey);
+	    }
+
+	    public static void makeApiRequest(String apiUrl, String apiKey) {
+	        try {
+	            // Create URL object with the specific API endpoint
+	            URL url = new URL(apiUrl);
+
+	            // Open connection
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	            connection.setRequestMethod("GET");
+
+	            // Set API key as a request header
+	            connection.setRequestProperty("X-API-Key", apiKey);
+
+	            // Read response
+	            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+	            String line;
+	            StringBuilder response = new StringBuilder();
+	            while ((line = reader.readLine()) != null) {
+	                response.append(line);
+	            }
+	            reader.close();
+
+	            // Print the response
+	            System.out.println(response.toString());
+
+	            // Close connection
+	            connection.disconnect();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
 
 }
-//String YOUR_API_KEY = "API_KEY_HERE";
-//String apiUrl = "https://aeroapi.flightaware.com/aeroapi/";
-//
-//String airport = "KSFO";
-//
-//HttpClient client = HttpClient.newHttpClient();
-//HttpRequest request = HttpRequest.newBuilder()
-//	.uri(URI.create(apiUrl + "airports/" + airport + "/flights"))
-//	.headers("x-apikey", YOUR_API_KEY)
-//	.build();
-//HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-//https://squoosh.app/  lighthouse score
-//if (response.statusCode() == 200) {
-//	System.out.println("responseBody: " + response.body());
-
-
-//{https://stackoverflow.com/questions/30924271/correct-way-to-define-array-of-enums-in-json-schema
-//	  "airport_code": "KIAH",
-//	  "alternate_ident": "IAH",
-//	  "code_icao": "KIAH",
-//	  "code_iata": "IAH",
-//	  "code_lid": "IAH",
-//	  "name": "Houston Bush Int'ctl",
-//	  "type": "Airport",
-//	  "elevation": 95,
-//	  "city": "Houston",
-//	  "state": "TX",
-//	  "longitude": -95.3414425,
-//	  "latitude": 29.9844353,
-//	  "timezone": "America/Chicago",
-//	  "country_code": "US",
-//	  "wiki_url": "http://en.wikipedia.org/wiki/George_Bush_Intercontinental_Airport",
-//	  "airport_flights_url": "/airports/KIAH/flights",
-//	  "alternatives": []
-//UX idea ( templates, railway publishing get feedback, chatGpt, dummy data
-//	}
