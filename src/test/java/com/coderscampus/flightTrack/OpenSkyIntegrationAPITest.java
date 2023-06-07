@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 //https://openskynetwork.github.io/opensky-api/rest.html
@@ -23,7 +25,7 @@ public class OpenSkyIntegrationAPITest {
 	    ResponseEntity<String>response = rt.getForEntity(uri, String.class);
 	    System.out.println(response);
 	}@Test
-	public void callOpenSkyExampleflights() {
+	public void callOpenSkyExampleAllflights() throws JsonMappingException, JsonProcessingException {
 //		begin
 //
 //		integer
@@ -42,7 +44,10 @@ public class OpenSkyIntegrationAPITest {
 	    					 .toUri();
 	    
 	    ResponseEntity<String>response = rt.getForEntity(uri, String.class);
-	    System.out.println(response);
+    	ObjectMapper objectMapper = new ObjectMapper();
+    	objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    	String formattedResponse = objectMapper.readValue(response.getBody(), Object.class).toString();
+    	System.out.println(formattedResponse);
 	}
 	
 @Test
@@ -91,4 +96,19 @@ public void openskyExampleDepartureAirport() throws IOException{
 	    	String formattedResponse = objectMapper.readValue(response.getBody(), Object.class).toString();
 	    	System.out.println(formattedResponse);
 	}
+@Test
+public void openskyExampleforAircraft() throws IOException{
+		RestTemplate rt = new RestTemplate();
+		URI uri = UriComponentsBuilder.fromHttpUrl("https://opensky-network.org/api/flights/aircraft")
+									  .queryParam("icao24","a3614c")
+									  .queryParam("begin","1685898028")
+									  .queryParam("end","1685984428")
+									  .build()
+									  .toUri();
+		ResponseEntity<String>response = rt.getForEntity(uri, String.class);
+    	ObjectMapper objectMapper = new ObjectMapper();
+    	objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    	String formattedResponse = objectMapper.readValue(response.getBody(), Object.class).toString();
+    	System.out.println(formattedResponse);
+}
 }
