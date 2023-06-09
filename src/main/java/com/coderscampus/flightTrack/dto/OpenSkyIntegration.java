@@ -1,4 +1,4 @@
-package com.coderscampus.flightTrack;
+package com.coderscampus.flightTrack.dto;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 //https://openskynetwork.github.io/opensky-api/rest.html
-public class OpenSkyIntegrationAPITest {
+public class OpenSkyIntegration {
 	@Test
 	public void callOpenSkyExample() {
 		
@@ -44,10 +44,7 @@ public class OpenSkyIntegrationAPITest {
 	    					 .toUri();
 	    
 	    ResponseEntity<String>response = rt.getForEntity(uri, String.class);
-    	ObjectMapper objectMapper = new ObjectMapper();
-    	objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-    	String formattedResponse = objectMapper.readValue(response.getBody(), Object.class).toString();
-    	System.out.println(formattedResponse);
+    	System.out.println(response);
 	}
 	
 @Test
@@ -59,19 +56,16 @@ public void openskyExampleArrivalAirport() throws IOException{
 		 */
 		RestTemplate rt = new RestTemplate();
 	    URI uri = UriComponentsBuilder.fromHttpUrl("https://opensky-network.org/api/flights/arrival")
-	    					 .queryParam("airport","kCMH")
-	    					 .queryParam("begin","1685898028")
-	    					 .queryParam("end","1685984428")
+	    					 .queryParam("airport","KIAD")
+	    					 .queryParam("begin","1685832444")
+	    					 .queryParam("end","1686005244")
 	    					 .build()
 	    					 .toUri();
 	    
 	    
 	   
 	    	ResponseEntity<String>response = rt.getForEntity(uri, String.class);
-	    	ObjectMapper objectMapper = new ObjectMapper();
-	    	objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-	    	String formattedResponse = objectMapper.readValue(response.getBody(), Object.class).toString();
-	    	System.out.println(formattedResponse);
+	    	System.out.println(response);
 	}
 @Test
 public void openskyExampleDepartureAirport() throws IOException{
@@ -83,32 +77,25 @@ public void openskyExampleDepartureAirport() throws IOException{
 		RestTemplate rt = new RestTemplate();
 	    URI uri = UriComponentsBuilder.fromHttpUrl("https://opensky-network.org/api/flights/departure")
 	    					 .queryParam("airport","kCMH")
-	    					 .queryParam("begin","1685898028")
-	    					 .queryParam("end","1685984428")
+	    					 .queryParam("begin","1686174444")
+	    					 .queryParam("end","1686178044")
 	    					 .build()
 	    					 .toUri();
 	    
 	    
-	   
-	    	ResponseEntity<String>response = rt.getForEntity(uri, String.class);
-	    	ObjectMapper objectMapper = new ObjectMapper();
-	    	objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-	    	String formattedResponse = objectMapper.readValue(response.getBody(), Object.class).toString();
-	    	System.out.println(formattedResponse);
+	    ResponseEntity<String>response = rt.getForEntity(uri, String.class);
+    	System.out.println(response);
 	}
 @Test
 public void openskyExampleforAircraft() throws IOException{
 		RestTemplate rt = new RestTemplate();
 		URI uri = UriComponentsBuilder.fromHttpUrl("https://opensky-network.org/api/flights/aircraft")
-									  .queryParam("icao24","a3614c")
+									  .queryParam("icao24","a09a01")
 									  .queryParam("begin","1685898028")
 									  .queryParam("end","1685984428")
 									  .build()
 									  .toUri();
 		ResponseEntity<String>response = rt.getForEntity(uri, String.class);
-    	ObjectMapper objectMapper = new ObjectMapper();
-    	objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-    	String formattedResponse = objectMapper.readValue(response.getBody(), Object.class).toString();
-    	System.out.println(formattedResponse);
+    	System.out.println(response);
 }
 }
