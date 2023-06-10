@@ -30,7 +30,7 @@ public class User {
 	private String phone;
 	private LocalDate registrationDate;
 	private Address address;
-	private List<Flight> flights = new ArrayList<>();
+	
 	
 			
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,13 +85,7 @@ public class User {
 	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	@OneToMany(mappedBy = "user")
-	public List<Flight> getFlights() {
-		return flights;
-	}
-	public void setFlights(List<Flight> flights) {
-		this.flights = flights;
-	}
+	
 	@OneToOne(mappedBy = "user",cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REMOVE},orphanRemoval = true)
 	public Address getAddress() {
 		return address;
@@ -105,7 +99,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", registrationDate="
-				+ registrationDate + ", address=" + address + ", flights=" + flights + "]";
+				+ registrationDate + ", address=" + address + "]";
 	}
 	@Override
 	public int hashCode() {

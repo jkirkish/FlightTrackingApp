@@ -1,6 +1,8 @@
 package com.coderscampus.flightTrack.dto;
 
-public class OpenSkyResponseDeparture {
+import java.util.List;
+
+public class OpenSkyResponseArrivalDTO {
 	
 	private String icao24;
 	private Integer firstSeen;
@@ -14,6 +16,7 @@ public class OpenSkyResponseDeparture {
 	private Integer estArrivalAirportVertDistance;
 	private Integer departureAirportCandidatesCount;
 	private Integer arrivalAirportCandidatesCount;
+	
 	public String getIcao24() {
 		return icao24;
 	}
@@ -86,5 +89,5 @@ public class OpenSkyResponseDeparture {
 	public void setArrivalAirportCandidatesCount(Integer arrivalAirportCandidatesCount) {
 		this.arrivalAirportCandidatesCount = arrivalAirportCandidatesCount;
 	}
-
+	
 }
