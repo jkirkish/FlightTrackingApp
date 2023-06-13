@@ -14,13 +14,13 @@ import com.coderscampus.flightTrack.repository.AirportOfFlightDeparturesReposito
 
 @RestController
 @RequestMapping("/api/departures")
-public class DepartureController {
+public class DepartureRestController {
 
 	
 	private final AirportOfFlightDeparturesRepository departureRepository;
 
     @Autowired
-    public DepartureController(AirportOfFlightDeparturesRepository departureRepository) {
+    public DepartureRestController(AirportOfFlightDeparturesRepository departureRepository) {
         this.departureRepository = departureRepository;
     }
 	

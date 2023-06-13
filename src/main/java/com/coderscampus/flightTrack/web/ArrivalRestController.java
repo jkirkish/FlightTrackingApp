@@ -13,12 +13,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/arrivals")
-public class ArrivalController {
+public class ArrivalRestController {
 
     private final AirportOfFlightArrivalsRepository arrivalRepository;
 
     @Autowired
-    public ArrivalController(AirportOfFlightArrivalsRepository arrivalRepository) {
+    public ArrivalRestController(AirportOfFlightArrivalsRepository arrivalRepository) {
         this.arrivalRepository = arrivalRepository;
     }
 
