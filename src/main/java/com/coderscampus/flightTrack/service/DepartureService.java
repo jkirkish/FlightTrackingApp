@@ -1,33 +1,36 @@
 package com.coderscampus.flightTrack.service;
 
 import org.springframework.stereotype.Service;
+
+import com.coderscampus.flightTrack.domain.OpenSkyResponseDeparture;
+
 import java.util.List;
 
 @Service
 public class DepartureService {
-    private List<Departure> departures;
+    private List<OpenSkyResponseDeparture> departures;
 
     public DepartureService() {
         // Initialize departures or retrieve them from a database
     }
 
-    public List<Departure> getDepartureList() {
+    public List<OpenSkyResponseDeparture> getOpenSkyResponseDepartureList() {
         return departures;
     }
 
-    public Departure getDepartureById(int id) {
-        // Logic to retrieve a departure by its id
+    public OpenSkyResponseDeparture getOpenSkyResponseDepartureById(int id) {
+             
     }
 
-    public void createDeparture(Departure departure) {
+    public void createOpenSkyResponseDeparture(OpenSkyResponseDeparture departure) {
         // Logic to create a new departure
     }
 
-    public void updateDeparture(int id, Departure updatedDeparture) {
+    public void updateOpenSkyResponseDeparture(int id, OpenSkyResponseDeparture updatedOpenSkyResponseDeparture) {
         // Logic to update an existing departure by its id
     }
 
-    public void deleteDeparture(int id) {
+    public void deleteOpenSkyResponseDeparture(int id) {
         // Logic to delete a departure by its id
     }
 }

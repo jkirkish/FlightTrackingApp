@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.coderscampus.flightTrack.domain.OpenSkyResponseArrival;
+
 @Controller
 @RequestMapping("/flights")
 public class FlightArrivalsController {
@@ -19,7 +21,7 @@ public class FlightArrivalsController {
     public String getArrivalList(Model model) {
         // Logic to retrieve the arrivals data and pass it to the view
         // Example:
-        List<Arrival> arrivals = flightService.getArrivalList();
+        List<OpenSkyResponseArrival> arrivals = flightService.getArrivalList();
         model.addAttribute("arrivals", arrivals);
         return "arrivalList";
     }
@@ -29,7 +31,7 @@ public class FlightArrivalsController {
     public String getArrivalDetails(@PathVariable("id") int id, Model model) {
         // Logic to retrieve the arrival details based on the provided id and pass it to the view
         // Example:
-        Arrival arrival = flightService.getArrivalById(id);
+    	OpenSkyResponseArrival arrival = flightService.getArrivalById(id);
         model.addAttribute("arrival", arrival);
         return "arrivalDetails";
     }
@@ -37,13 +39,13 @@ public class FlightArrivalsController {
     // GET mapping for displaying the create form
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("arrival", new Arrival());
+        model.addAttribute("arrival", new OpenSkyResponseArrival());
         return "createArrival";
     }
 
     // POST mapping for creating a new arrival
     @PostMapping("/create")
-    public String createArrival(@ModelAttribute("arrival") Arrival arrival) {
+    public String createArrival(@ModelAttribute("arrival") OpenSkyResponseArrival arrival) {
         // Logic to create a new arrival based on the provided data
         flightService.createArrival(arrival);
         return "redirect:/flights/arrival-list";
@@ -54,14 +56,14 @@ public class FlightArrivalsController {
     public String showUpdateForm(@PathVariable("id") int id, Model model) {
         // Logic to retrieve the arrival details based on the provided id and pass it to the view
         // Example:
-        Arrival arrival = flightService.getArrivalById(id);
+    	OpenSkyResponseArrival arrival = flightService.getArrivalById(id);
         model.addAttribute("arrival", arrival);
         return "updateArrival";
     }
 
     // POST mapping for updating an arrival
     @PostMapping("/update/{id}")
-    public String updateArrival(@PathVariable("id") int id, @ModelAttribute("arrival") Arrival updatedArrival) {
+    public String updateArrival(@PathVariable("id") int id, @ModelAttribute("arrival") OpenSkyResponseArrival updatedArrival) {
         // Logic to update the arrival based on the provided data
         flightService.updateArrival(id, updatedArrival);
         return "redirect:/flights/arrival-list";

@@ -24,6 +24,17 @@
   <div class="container mt-3">
     <h2 style="color: white;">Login</h2>
     <form action="/login" method = "post">
+    <fieldset>
+    <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->
+    <div th:if="${param.error != null}">
+      Failed to login.
+      <div th:if="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+        Reason: <span
+          th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+      </div>
+      <!-- the configured LogoutConfigurer#logoutSuccessUrl is /login?logout and contains the query param logout -->
+      <div th:if="${param.logout != null}">You have been logged out.</div>
+    </div>
         <div class="mb-3 mt-3" style="color: white;">
             <label for="username">Username:</label>
             <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" th:field="${user.username}">
@@ -37,7 +48,7 @@
             <label class="form-check-label" for="remember">Remember me</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        
+        </fieldset>
     </form>
 </div>
 

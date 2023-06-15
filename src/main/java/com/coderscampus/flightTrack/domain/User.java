@@ -1,22 +1,21 @@
 package com.coderscampus.flightTrack.domain;
-//https://www.javatpoint.com/collections-in-java
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-//https://www.baeldung.com/spring-boot-h2-database
-//http://localhost:8080/h2-console
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -30,7 +29,7 @@ public class User {
 	private String phone;
 	private LocalDate registrationDate;
 	private Address address;
-	
+	private Set<Authorities> authorities = new HashSet<>();
 	
 			
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -93,7 +92,13 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="user")
+	public Set<Authorities> getAuthorities() {
+	    return authorities;
+	 }
+	public void setAuthorities(Set<Authorities> authorities) {
+	    this.authorities = authorities;
+	 }
 
 	@Override
 	public String toString() {
