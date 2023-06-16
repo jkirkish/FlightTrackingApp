@@ -24,15 +24,12 @@ public class SecurityConfiguration extends WebSecurityConfiguration{
 	protected void configure(AuthenticationManagerBuilder auth)throws Exception{
 		auth
 		   .inMemoryAuthentication()
-		   .passwordEncoder(passwordEncoder)
-		   .withUser("root")
-		   .password("$2a$10$QBnvMzOZvOkW7cZhmLwPOOvCBvLPJMAAZs1vdf9r.ZbaQH1JMPm0i")
-		   .roles("USER","ADMIN");
+		   .passwordEncoder(passwordEncoder);
+		   
 	}
 	
 	protected void configuration(HttpSecurity http) throws Exception {
 		http
-		 .csrf().disable()
 		 .authorizeRequests()
 		 	.requestMatchers("/admin/**").hasAnyRole("ADMIN")
 		 	.anyRequest().hasAnyRole("USER").and()
