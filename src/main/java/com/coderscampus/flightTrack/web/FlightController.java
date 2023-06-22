@@ -1,20 +1,33 @@
 package com.coderscampus.flightTrack.web;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.coderscampus.flightTrack.domain.OpenSkyResponseDeparture;
+import com.coderscampus.flightTrack.service.DepartureService;
 
 @Controller
 @RequestMapping("/flights")
 public class FlightController {
 
+	@Autowired
+	private DepartureService departService;
+	
+	
+	
     // GET mapping for displaying the flight departure list
     @GetMapping("/departure-list")
     public String getDepartureList(Model model) {
         // Logic to retrieve the departures data and pass it to the view
         // Example:
-        List<OpenSkyResponseDeparture> departures = flightService.getDepartureList();
+        List<OpenSkyResponseDeparture> departures = departService.getDepartureList();
         model.addAttribute("departures", departures);
         return "departureList";
     }
@@ -24,7 +37,7 @@ public class FlightController {
     public String getDepartureDetails(@PathVariable("id") int id, Model model) {
         // Logic to retrieve the departure details based on the provided id and pass it to the view
         // Example:
-    	OpenSkyResponseDeparture departure = flightService.getDepartureById(id);
+    	OpenSkyResponseDeparture departure = departService.getDepartureById(id);
         model.addAttribute("departure", departure);
         return "departureDetails";
     }
@@ -32,7 +45,7 @@ public class FlightController {
     // GET mapping for displaying the create form
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("departure", new Departure());
+        model.addAttribute("departure", new OpenSkyResponseDeparture());
         return "createDeparture";
     }
 
@@ -40,7 +53,7 @@ public class FlightController {
     @PostMapping("/create")
     public String createDeparture(@ModelAttribute("departure") OpenSkyResponseDeparture departure) {
         // Logic to create a new departure based on the provided data
-        flightService.createDeparture(departure);
+        departureService.createDeparture(departure);
         return "redirect:/flights/departure-list";
     }
 
@@ -49,7 +62,7 @@ public class FlightController {
     public String showUpdateForm(@PathVariable("id") int id, Model model) {
         // Logic to retrieve the departure details based on the provided id and pass it to the view
         // Example:
-    	OpenSkyResponseDeparture departure = flightService.getDepartureById(id);
+    	OpenSkyResponseDeparture departure = departService.getDepartureById(id);
         model.addAttribute("departure", departure);
         return "updateDeparture";
     }
@@ -58,7 +71,7 @@ public class FlightController {
     @PostMapping("/update/{id}")
     public String updateDeparture(@PathVariable("id") int id, @ModelAttribute("departure") OpenSkyResponseDeparture updatedDeparture) {
         // Logic to update the departure based on the provided data
-        flightService.updateDeparture(id, updatedDeparture);
+        departService.updateDeparture(id, updatedDeparture);
         return "redirect:/flights/departure-list";
     }
 
@@ -66,7 +79,7 @@ public class FlightController {
     @PostMapping("/delete/{id}")
     public String deleteDeparture(@PathVariable("id") int id) {
         // Logic to delete the departure based on the provided id
-        flightService.deleteDeparture(id);
+        departService.deleteDeparture(id);
         return "redirect:/flights/departure-list";
     }
 }
