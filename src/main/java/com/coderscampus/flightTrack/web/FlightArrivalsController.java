@@ -33,7 +33,7 @@ public class FlightArrivalsController {
 
     // GET mapping for displaying the flight arrival details
     @GetMapping("/arrivals/{id}")
-    public String getArrivalDetails(@PathVariable("id") int id, Model model) {
+    public String getArrivalDetails(@PathVariable("id") Long id, Model model) {
         // Logic to retrieve the arrival details based on the provided id and pass it to the view
         // Example:
     	OpenSkyResponseArrival arrival = arrivalService.getArrivalById(id);
@@ -58,7 +58,7 @@ public class FlightArrivalsController {
 
     // GET mapping for displaying the update form
     @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         // Logic to retrieve the arrival details based on the provided id and pass it to the view
         // Example:
     	OpenSkyResponseArrival arrival = arrivalService.getArrivalById(id);
@@ -68,7 +68,7 @@ public class FlightArrivalsController {
 
     // POST mapping for updating an arrival
     @PostMapping("/update/{id}")
-    public String updateArrival(@PathVariable("id") int id, @ModelAttribute("arrival") OpenSkyResponseArrival updatedArrival) {
+    public String updateArrival(@PathVariable("id") Long id, @ModelAttribute("arrival") OpenSkyResponseArrival updatedArrival) {
         // Logic to update the arrival based on the provided data
         arrivalService.updateArrival(id, updatedArrival);
         return "redirect:/flights/arrival-list";
@@ -76,7 +76,7 @@ public class FlightArrivalsController {
 
     // POST mapping for deleting an arrival
     @PostMapping("/delete/{id}")
-    public String deleteArrival(@PathVariable("id") int id) {
+    public String deleteArrival(@PathVariable("id") Long id) {
         // Logic to delete the arrival based on the provided id
         arrivalService.deleteArrival(id);
         return "redirect:/flights/arrival-list";

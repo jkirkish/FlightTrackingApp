@@ -15,7 +15,7 @@ import com.coderscampus.flightTrack.service.DepartureService;
 
 @Controller
 @RequestMapping("/flights")
-public class FlightController {
+public class FlightDeparturesController {
 
 	@Autowired
 	private DepartureService departService;
@@ -34,7 +34,7 @@ public class FlightController {
 
     // GET mapping for displaying the flight departure details
     @GetMapping("/departures/{id}")
-    public String getDepartureDetails(@PathVariable("id") int id, Model model) {
+    public String getDepartureDetails(@PathVariable("id") Long id, Model model) {
         // Logic to retrieve the departure details based on the provided id and pass it to the view
         // Example:
     	OpenSkyResponseDeparture departure = departService.getDepartureById(id);
@@ -53,13 +53,13 @@ public class FlightController {
     @PostMapping("/create")
     public String createDeparture(@ModelAttribute("departure") OpenSkyResponseDeparture departure) {
         // Logic to create a new departure based on the provided data
-        departureService.createDeparture(departure);
+        departService.createDeparture(departure);
         return "redirect:/flights/departure-list";
     }
 
     // GET mapping for displaying the update form
     @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+    public String showDeparture(@PathVariable("id") Long id, Model model) {
         // Logic to retrieve the departure details based on the provided id and pass it to the view
         // Example:
     	OpenSkyResponseDeparture departure = departService.getDepartureById(id);
@@ -69,7 +69,7 @@ public class FlightController {
 
     // POST mapping for updating a departure
     @PostMapping("/update/{id}")
-    public String updateDeparture(@PathVariable("id") int id, @ModelAttribute("departure") OpenSkyResponseDeparture updatedDeparture) {
+    public String updateDeparture(@PathVariable("id") Long id, @ModelAttribute("departure") OpenSkyResponseDeparture updatedDeparture) {
         // Logic to update the departure based on the provided data
         departService.updateDeparture(id, updatedDeparture);
         return "redirect:/flights/departure-list";
@@ -77,7 +77,7 @@ public class FlightController {
 
     // POST mapping for deleting a departure
     @PostMapping("/delete/{id}")
-    public String deleteDeparture(@PathVariable("id") int id) {
+    public String deleteDeparture(@PathVariable("id") Long id) {
         // Logic to delete the departure based on the provided id
         departService.deleteDeparture(id);
         return "redirect:/flights/departure-list";

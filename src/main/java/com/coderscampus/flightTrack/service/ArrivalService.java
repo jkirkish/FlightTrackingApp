@@ -1,34 +1,50 @@
 package com.coderscampus.flightTrack.service;
 
-import org.springframework.stereotype.Service;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.coderscampus.flightTrack.domain.OpenSkyResponseArrival;
+import com.coderscampus.flightTrack.repository.AirportOfFlightArrivalsRepository;
 
 @Service
 public class ArrivalService {
-//    private List<Arrival> arrivals;
-//
-//    public ArrivalService() {
-//        // Initialize arrivals or retrieve them from a database
-//    }
-//
-//    public List<Arrival> getArrivalList() {
-//        return arrivals;
-//    }
-//
-//    public Arrival getArrivalById(int id) {
-//        // Logic to retrieve an arrival by its id
-//    }
-//
-//    public void createArrival(Arrival arrival) {
-//        // Logic to create a new arrival
-//    }
-//
-//    public void updateArrival(int id, Arrival updatedArrival) {
-//        // Logic to update an existing arrival by its id
-//    }
-//
-//    public void deleteArrival(int id) {
-//        // Logic to delete an arrival by its id
-//    }
+
+	private final AirportOfFlightArrivalsRepository arrivalsRepository;
+
+    @Autowired
+    public ArrivalService(AirportOfFlightArrivalsRepository arrivalsRepository) {
+        this.arrivalsRepository = arrivalsRepository;
+    }
+
+    public List<OpenSkyResponseArrival> getArrivalList() {
+        return arrivalsRepository.findAll();
+    }
+
+    public OpenSkyResponseArrival getArrivalById(Long id) {
+        return arrivalsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid arrival ID: " + id));
+    }
+
+    public void createArrival(OpenSkyResponseArrival arrival) {
+        arrivalsRepository.save(arrival);
+    }
+
+    public void updateArrival(Long id, OpenSkyResponseArrival updatedArrival) {
+        OpenSkyResponseArrival existingArrival = arrivalsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid arrival ID: " + id));
+
+        // Update the fields of the existing arrival entity with the new values
+        existingArrival.setIcao24(updatedArrival.getIcao24());
+        existingArrival.setFirstSeen(updatedArrival.getFirstSeen());
+     
+
+        arrivalsRepository.save(existingArrival);
+    }
+
+    public void deleteArrival(Long id) {
+        arrivalsRepository.deleteById(id);
+    }
 }
 
