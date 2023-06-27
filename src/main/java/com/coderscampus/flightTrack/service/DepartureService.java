@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.coderscampus.flightTrack.domain.OpenSkyResponseDeparture;
 import com.coderscampus.flightTrack.repository.AirportOfFlightDeparturesRepository;
+import com.coderscampus.flightTrack.util.EpochConverter;
 
 @Service
 public class DepartureService {
 	
 	
 	private final AirportOfFlightDeparturesRepository departuresRepository;
+	
+	private EpochConverter epochConvert = new EpochConverter();
 	
 	@Autowired
     public DepartureService(AirportOfFlightDeparturesRepository departuresRepository) {
@@ -26,6 +29,17 @@ public class DepartureService {
 	                .orElseThrow(() -> new IllegalArgumentException("Invalid departure ID: " + id));
 	}
 	public void createDeparture(OpenSkyResponseDeparture departure) {
+//		RestTemplate rt = new RestTemplate();
+//	    URI uri = UriComponentsBuilder.fromHttpUrl("https://opensky-network.org/api/flights/departure")
+//	    					 .queryParam("airport","kCMH")
+//	    					 .queryParam("begin","1686174444")
+//	    					 .queryParam("end","1686178044")
+//	    					 .build()
+//	    					 .toUri();
+//	    
+//	    
+//	    ResponseEntity<String>response = rt.getForEntity(uri, String.class);
+//    	System.out.println(response);
         departuresRepository.save(departure);
     }
 	public void updateDeparture(Long id, OpenSkyResponseDeparture updatedDeparture) {

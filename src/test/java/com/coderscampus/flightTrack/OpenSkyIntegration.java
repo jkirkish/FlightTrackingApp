@@ -1,4 +1,4 @@
-package com.coderscampus.flightTrack.dto;
+package com.coderscampus.flightTrack;
 
 import java.io.IOException;
 import java.net.URI;
