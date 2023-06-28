@@ -4,6 +4,8 @@ VALUES
   (2, 'jane.smith', 'pass321', 'Jane', 'Smith', 'jane.smith@example.com', '9876543210', '2023-05-16');
 Select * from users;
 
+--logging.level.org.springframework.security=DEBUG
+
 
 
 

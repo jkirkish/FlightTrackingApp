@@ -1,0 +1,62 @@
+<!<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>User Information Update Form</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<!-- Custom CSS -->
+	<style>
+		.container {
+			margin-top: 50px;
+		}
+	</style>
+	 <style>
+    /* Background image styles */
+    body {
+    		background-color:white;
+			background-size: cover;
+			background-repeat: no-repeat;
+			font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <label class="navbar-brand" for="flight-tracking">Flight Tracking</label>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+          <a class="nav-link" href="/index">Index</a>
+        </li>
+      </ul>
+  </nav>
+	<div class="container">
+		<h1>Search Flight Arrivals</h1>
+		<form action="" method="post">
+		    <input type="hidden" id="searchId" th:field="${arrivalSearch.id}">
+		    <input type="hidden" id="searchId" th:field="${arrivalSearch.SearchType}" th:value="Arrival">
+			<div class="form-group">
+				<label for="Airport">Airport</label>
+				<input type="text" class="form-control" id="airport" th:field="${arrivalSearch.airport}" placeholder="Enter airport i.e. KJFK">
+			</div>
+			<div class="form-group">
+				<label for="start "></label>
+				<input type="text" class="form-control" id="start" th:field="${arrivalSearch.startDate}" placeholder="Enter begin date time">
+			</div>
+			<div class="form-group">
+				<label for="end">End</label>
+				<input type="text" class="form-control" id="end" th:field="${arrivalSearch.endDate}" placeholder="Enter end date time">
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+	</div>
+	<!-- jQuery and Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+</body>
+</html>
