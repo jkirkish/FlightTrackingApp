@@ -25,10 +25,20 @@ public class SearchController {
 		return "airportArrivalSearch";
 	}
 	
-	@PostMapping("/airportArrivalSearch")
-	public String performAirportArrivalSearch(Search search){
+	@GetMapping("/airportArrivalSearch")
+	public String performSearchArrivalAPI(Search search){
 		searchService.save(search);
+		return "redirect:/airportArrivalSearch";	
+	}
+	@PostMapping("/airportArrivalSearch")
+	public String performSearchArrivalAPI(String airport, String startDate, String endDate) throws Exception {
+		Search searchRequest = new Search();
+		searchRequest.setAirport(airport);
+		searchRequest.setStartDate(startDate);
+		searchRequest.setEndDate(endDate);
+		searchService.initiateSearch(searchRequest.getAirport(),searchRequest.getStartDate(),searchRequest.getEndDate());
 		return "redirect:/airportArrivalSearch";
+				
 		
 	}
 }

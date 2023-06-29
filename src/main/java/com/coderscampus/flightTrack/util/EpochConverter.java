@@ -6,20 +6,20 @@ import java.util.Date;
 public class EpochConverter {
 
     // Convert epoch to human-readable date
-    public static String epochToHumanReadable(long epochSeconds) {
+    public String epochToHumanReadable(long epochSeconds) {
         Date date = new Date(epochSeconds * 1000); // Convert seconds to milliseconds
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         return sdf.format(date);
     }
 
     // Convert human-readable date to epoch
-    public static long humanReadableToEpoch(String dateString) throws Exception {
+    public long humanReadableToEpoch(String dateString) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         Date date = sdf.parse(dateString);
         return date.getTime() / 1000; // Convert milliseconds to seconds
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         // Test epoch to human-readable conversion
         long epochTime = 1686102929;
         String humanReadableDate = epochToHumanReadable(epochTime);
