@@ -11,10 +11,12 @@ import jakarta.persistence.Table;
 public class Search {
 	
 	private Long id;
-	private String SearchType;
+	private String searchType;
 	private String airport;
 	private String startDate;
 	private String endDate;
+	
+	
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
@@ -24,10 +26,10 @@ public class Search {
 		this.id = id;
 	}
 	public String getSearchType() {
-		return SearchType;
+		return searchType;
 	}
-	public void setSearchType(String searchType) {
-		SearchType = searchType;
+	public void setSearchType(String SearchType) {
+		this.searchType = SearchType;
 	}
 	public String getAirport() {
 		return airport;

@@ -30,14 +30,6 @@ public class FlightArrivalsController {
     }
 
     
-    @GetMapping("/arrivals/{id}")
-    public String getArrivalDetails(ModelMap model, @PathVariable Long id) {
-    	OpenSkyResponseArrival arrival = arrivalService.findById(id);
-        model.put("arrival", arrival);
-        return "arrivals";
-    }
-
-    
     @GetMapping("/update/{id}")
     public String showUpdatedArrival(ModelMap model, @PathVariable Long id) {
     	OpenSkyResponseArrival arrival = arrivalService.findById(id);

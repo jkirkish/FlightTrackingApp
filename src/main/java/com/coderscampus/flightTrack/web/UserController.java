@@ -19,8 +19,6 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
-	
 
 	@GetMapping("/users")
     public String getUsers(ModelMap model) {
