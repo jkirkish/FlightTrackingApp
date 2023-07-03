@@ -28,8 +28,8 @@ public class SearchController {
 	
 	@GetMapping("/airportArrivalSearch")
 	public String getAirportArrivalSearches(ModelMap model) {
-		List<Search>searches = searchService.findAll();
-		model.put("arrivalSearch", searches);
+		//List<Search>searches = searchService.findAll();
+		model.put("arrivalSearch", new Search());
 		return "airportArrivalSearch";
 	}
 	
