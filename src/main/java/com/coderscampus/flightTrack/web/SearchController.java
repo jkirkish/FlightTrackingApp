@@ -22,10 +22,6 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
-	
-	
-	
-	
 	@GetMapping("/airportArrivalSearch")
 	public String getAirportArrivalSearches(ModelMap model) {
 		//List<Search>searches = searchService.findAll();
@@ -33,10 +29,10 @@ public class SearchController {
 		return "airportArrivalSearch";
 	}
 	
-	@PostMapping("/airportArrivalSearch/{id}/save")
+	@PostMapping("/airportArrivalSearch")
 	public String saveSearch(Search search) {
 		searchService.save(search);
-		return "redirect:/airportArrivalSearch/" + search.getId();
+		return "redirect:/airportArrivalSearch";
 	}
 	 @PostMapping("/airportArrivalSearch/{id}/delete")
 	   public String deleteSearch(@PathVariable Long id) {
