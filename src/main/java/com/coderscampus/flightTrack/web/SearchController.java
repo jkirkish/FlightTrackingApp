@@ -36,8 +36,9 @@ public class SearchController {
 	}
 	
 	@PostMapping("/airportArrivalSearch")
-	public String saveSearch(Search search) {
+	public String saveSearch(Search search) throws Exception {
 		searchService.save(search);
+		searchService.initiateSearch(search);
 		return "redirect:/airportArrivalSearch";
 	}
 	 @PostMapping("/airportArrivalSearch/{id}/delete")
