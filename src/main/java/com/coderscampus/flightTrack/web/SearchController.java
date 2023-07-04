@@ -22,9 +22,15 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
+	@GetMapping("/arrivalSearchRequests")
+	public String getallSearchRequests(ModelMap model){
+		List<Search> search = searchService.findAll();
+		model.put("arrivalSearch", search);
+		return "arrivalSearchRequests";
+	}
+	
 	@GetMapping("/airportArrivalSearch")
 	public String getAirportArrivalSearches(ModelMap model) {
-		//List<Search>searches = searchService.findAll();
 		model.put("arrivalSearch", new Search());
 		return "airportArrivalSearch";
 	}

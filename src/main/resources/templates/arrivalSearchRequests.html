@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Information</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <label class="navbar-brand" for="flight-tracking">Flight Tracking</label>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+          <a class="nav-link" href="/index">Index</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/airportArrivalSearch">ArrivalSearchForm</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+  <h1>Search Information</h1>
+  <table class="table">
+      <tbody>
+      <tr>
+          <th>ID</th>
+          <th>Search Type</th>
+          <th>Airport</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+      </tr>
+      <tr th:each="search : ${arrivalSearch}">
+          <td th:text="${search.id}"></td>
+          <td th:text="${search.searchType}"></td>
+          <td th:text="${search.airport}"></td>
+          <td th:text="${search.startDate}"></td>
+          <td th:text="${search.endDate}"></td>
+      </tr>
+      </tbody>
+  </table>
+</div>
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
