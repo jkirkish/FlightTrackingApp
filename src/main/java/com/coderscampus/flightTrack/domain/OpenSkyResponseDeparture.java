@@ -2,144 +2,176 @@ package com.coderscampus.flightTrack.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "flight_departures")
+@Table(name = "open_sky_departure")
 public class OpenSkyResponseDeparture {
-	
-	@Id
-	@Column(name = "icao24", nullable = false)
-	private String icao24;
 
-	@Column(name = "first_seen")
-	private Integer firstSeen;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "est_departure_airport")
-	private String estDepartureAirport;
+    @Column(name = "icao24", nullable = false)
+    private String icao24;
 
-	@Column(name = "last_seen")
-	private Integer lastSeen;
+    @Column(name = "first_seen")
+    private Integer firstSeen;
 
-	@Column(name = "est_arrival_airport")
-	private String estArrivalAirport;
+    @Column(name = "est_departure_airport")
+    private String estDepartureAirport;
 
-	@Column(name = "call_sign")
-	private String callSign;
+    @Column(name = "last_seen")
+    private Integer lastSeen;
 
-	@Column(name = "est_departure_airport_horiz_distance")
-	private Integer estDepartureAirportHorizDistance;
+    @Column(name = "est_arrival_airport")
+    private String estArrivalAirport;
 
-	@Column(name = "est_departure_airport_vert_distance")
-	private Integer estDepartureAirportVertDistance;
+    @Column(name = "call_sign")
+    private String callSign;
 
-	@Column(name = "est_arrival_airport_horiz_distance")
-	private Integer estArrivalAirportHorizDistance;
+    @Column(name = "est_departure_airport_horiz_distance")
+    private Integer estDepartureAirportHorizDistance;
 
-	@Column(name = "est_arrival_airport_vert_distance")
-	private Integer estArrivalAirportVertDistance;
+    @Column(name = "est_departure_airport_vert_distance")
+    private Integer estDepartureAirportVertDistance;
 
-	@Column(name = "departure_airport_candidates_count")
-	private Integer departureAirportCandidatesCount;
+    @Column(name = "est_arrival_airport_horiz_distance")
+    private Integer estArrivalAirportHorizDistance;
 
-	@Column(name = "arrival_airport_candidates_count")
-	private Integer arrivalAirportCandidatesCount;
+    @Column(name = "est_arrival_airport_vert_distance")
+    private Integer estArrivalAirportVertDistance;
 
-	public String getIcao24() {
-		return icao24;
-	}
+    @Column(name = "departure_airport_candidates_count")
+    private Integer departureAirportCandidatesCount;
 
-	public void setIcao24(String icao24) {
-		this.icao24 = icao24;
-	}
+    @Column(name = "arrival_airport_candidates_count")
+    private Integer arrivalAirportCandidatesCount;
 
-	public Integer getFirstSeen() {
-		return firstSeen;
-	}
+    // Constructors, getters, and setters
 
-	public void setFirstSeen(Integer firstSeen) {
-		this.firstSeen = firstSeen;
-	}
+    public OpenSkyResponseDeparture() {
+    }
 
-	public String getEstDepartureAirport() {
-		return estDepartureAirport;
-	}
+    public OpenSkyResponseDeparture(String icao24, Integer firstSeen, String estDepartureAirport, Integer lastSeen,
+            String estArrivalAirport, String callSign, Integer estDepartureAirportHorizDistance,
+            Integer estDepartureAirportVertDistance, Integer estArrivalAirportHorizDistance,
+            Integer estArrivalAirportVertDistance, Integer departureAirportCandidatesCount,
+            Integer arrivalAirportCandidatesCount) {
+        this.icao24 = icao24;
+        this.firstSeen = firstSeen;
+        this.estDepartureAirport = estDepartureAirport;
+        this.lastSeen = lastSeen;
+        this.estArrivalAirport = estArrivalAirport;
+        this.callSign = callSign;
+        this.estDepartureAirportHorizDistance = estDepartureAirportHorizDistance;
+        this.estDepartureAirportVertDistance = estDepartureAirportVertDistance;
+        this.estArrivalAirportHorizDistance = estArrivalAirportHorizDistance;
+        this.estArrivalAirportVertDistance = estArrivalAirportVertDistance;
+        this.departureAirportCandidatesCount = departureAirportCandidatesCount;
+        this.arrivalAirportCandidatesCount = arrivalAirportCandidatesCount;
+    }
 
-	public void setEstDepartureAirport(String estDepartureAirport) {
-		this.estDepartureAirport = estDepartureAirport;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Integer getLastSeen() {
-		return lastSeen;
-	}
+    public String getIcao24() {
+        return icao24;
+    }
 
-	public void setLastSeen(Integer lastSeen) {
-		this.lastSeen = lastSeen;
-	}
+    public void setIcao24(String icao24) {
+        this.icao24 = icao24;
+    }
 
-	public String getEstArrivalAirport() {
-		return estArrivalAirport;
-	}
+    public Integer getFirstSeen() {
+        return firstSeen;
+    }
 
-	public void setEstArrivalAirport(String estArrivalAirport) {
-		this.estArrivalAirport = estArrivalAirport;
-	}
+    public void setFirstSeen(Integer firstSeen) {
+        this.firstSeen = firstSeen;
+    }
 
-	public String getCallSign() {
-		return callSign;
-	}
+    public String getEstDepartureAirport() {
+        return estDepartureAirport;
+    }
 
-	public void setCallSign(String callSign) {
-		this.callSign = callSign;
-	}
+    public void setEstDepartureAirport(String estDepartureAirport) {
+        this.estDepartureAirport = estDepartureAirport;
+    }
 
-	public Integer getEstDepartureAirportHorizDistance() {
-		return estDepartureAirportHorizDistance;
-	}
+    public Integer getLastSeen() {
+        return lastSeen;
+    }
 
-	public void setEstDepartureAirportHorizDistance(Integer estDepartureAirportHorizDistance) {
-		this.estDepartureAirportHorizDistance = estDepartureAirportHorizDistance;
-	}
+    public void setLastSeen(Integer lastSeen) {
+        this.lastSeen = lastSeen;
+    }
 
-	public Integer getEstDepartureAirportVertDistance() {
-		return estDepartureAirportVertDistance;
-	}
+    public String getEstArrivalAirport() {
+        return estArrivalAirport;
+    }
 
-	public void setEstDepartureAirportVertDistance(Integer estDepartureAirportVertDistance) {
-		this.estDepartureAirportVertDistance = estDepartureAirportVertDistance;
-	}
+    public void setEstArrivalAirport(String estArrivalAirport) {
+        this.estArrivalAirport = estArrivalAirport;
+    }
 
-	public Integer getEstArrivalAirportHorizDistance() {
-		return estArrivalAirportHorizDistance;
-	}
+    public String getCallSign() {
+        return callSign;
+    }
 
-	public void setEstArrivalAirportHorizDistance(Integer estArrivalAirportHorizDistance) {
-		this.estArrivalAirportHorizDistance = estArrivalAirportHorizDistance;
-	}
+    public void setCallSign(String callSign) {
+        this.callSign = callSign;
+    }
 
-	public Integer getEstArrivalAirportVertDistance() {
-		return estArrivalAirportVertDistance;
-	}
+    public Integer getEstDepartureAirportHorizDistance() {
+        return estDepartureAirportHorizDistance;
+    }
 
-	public void setEstArrivalAirportVertDistance(Integer estArrivalAirportVertDistance) {
-		this.estArrivalAirportVertDistance = estArrivalAirportVertDistance;
-	}
+    public void setEstDepartureAirportHorizDistance(Integer estDepartureAirportHorizDistance) {
+        this.estDepartureAirportHorizDistance = estDepartureAirportHorizDistance;
+    }
 
-	public Integer getDepartureAirportCandidatesCount() {
-		return departureAirportCandidatesCount;
-	}
+    public Integer getEstDepartureAirportVertDistance() {
+        return estDepartureAirportVertDistance;
+    }
 
-	public void setDepartureAirportCandidatesCount(Integer departureAirportCandidatesCount) {
-		this.departureAirportCandidatesCount = departureAirportCandidatesCount;
-	}
+    public void setEstDepartureAirportVertDistance(Integer estDepartureAirportVertDistance) {
+        this.estDepartureAirportVertDistance = estDepartureAirportVertDistance;
+    }
 
-	public Integer getArrivalAirportCandidatesCount() {
-		return arrivalAirportCandidatesCount;
-	}
+    public Integer getEstArrivalAirportHorizDistance() {
+        return estArrivalAirportHorizDistance;
+    }
 
-	public void setArrivalAirportCandidatesCount(Integer arrivalAirportCandidatesCount) {
-		this.arrivalAirportCandidatesCount = arrivalAirportCandidatesCount;
-	}
+    public void setEstArrivalAirportHorizDistance(Integer estArrivalAirportHorizDistance) {
+        this.estArrivalAirportHorizDistance = estArrivalAirportHorizDistance;
+    }
+
+    public Integer getEstArrivalAirportVertDistance() {
+        return estArrivalAirportVertDistance;
+    }
+
+    public void setEstArrivalAirportVertDistance(Integer estArrivalAirportVertDistance) {
+        this.estArrivalAirportVertDistance = estArrivalAirportVertDistance;
+    }
+
+    public Integer getDepartureAirportCandidatesCount() {
+        return departureAirportCandidatesCount;
+    }
+
+    public void setDepartureAirportCandidatesCount(Integer departureAirportCandidatesCount) {
+        this.departureAirportCandidatesCount = departureAirportCandidatesCount;
+    }
+
+    public Integer getArrivalAirportCandidatesCount() {
+        return arrivalAirportCandidatesCount;
+    }
+
+    public void setArrivalAirportCandidatesCount(Integer arrivalAirportCandidatesCount) {
+        this.arrivalAirportCandidatesCount = arrivalAirportCandidatesCount;
+    }
 }
-

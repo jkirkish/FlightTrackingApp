@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.coderscampus.flightTrack.domain.OpenSkyResponseArrival;
+import com.coderscampus.flightTrack.domain.OpenSkyResponseDeparture;
 import com.coderscampus.flightTrack.domain.Search;
 import com.coderscampus.flightTrack.domain.User;
 import com.coderscampus.flightTrack.service.SearchService;
@@ -46,7 +47,7 @@ public class SearchController {
 		   searchService.delete(id);
 		   return "redirect:/airportArrivalSearch";
 	   }
-				
+			
 		
 	}
 
