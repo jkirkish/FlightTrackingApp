@@ -13,7 +13,6 @@ public class OpenSkyResponseArrival {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String icao24;
     private Integer firstSeen;
     private String estDepartureAirport;

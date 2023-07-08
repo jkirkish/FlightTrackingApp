@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Departure Details</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <style>
+        .row-with-border {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <label class="navbar-brand" for="flight-tracking">Flight Tracking</label>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Index</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/airportArrivalSearch">SearchForm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/arrivals">Arrivals</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/departures">Departures</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h2>Departure Details</h2>
+    <form id="departureForm">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td><span th:text="${departure.id}"></span></td>
+            </tr>
+            <tr>
+                <th>ICAO24</th>
+                <td><span th:text="${departure.icao24}"></span></td>
+            </tr>
+            <tr>
+                <th>First Seen</th>
+                <td><span th:text="${firstSeenFormatted}"></span></td>
+            </tr>
+            <tr>
+                <th>Est. Departure Airport</th>
+                <td><span th:text="${departure.estDepartureAirport}"></span></td>
+            </tr>
+            <tr>
+                <th>Last Seen</th>
+                <td><span th:text="${lastSeenFormatted}"></span></td>
+            </tr>
+            <tr>
+                <th>Call Sign</th>
+                <td><span th:text="${departure.callSign}"></span></td>
+            </tr>
+            <tr>
+                <th>Est. Departure Airport Horiz. Distance</th>
+                <td><span th:text="${departure.estDepartureAirportHorizDistance}"></span></td>
+            </tr>
+            <tr>
+                <th>Est. Departure Airport Vert. Distance</th>
+                <td><span th:text="${departure.estDepartureAirportVertDistance}"></span></td>
+            </tr>
+            <tr>
+                <th>Departure Airport Candidates Count</th>
+                <td><span th:text="${departure.departureAirportCandidatesCount}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" onclick="updateDeparture()">Update</button>
+        <button type="button" onclick="deleteDeparture()">Delete</button>
+    </form>
+</div>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    function updateDeparture() {
+        // Retrieve form data
+        var form = document.getElementById("departureForm");
+        var formData = new FormData(form);
+
+        // Perform an AJAX request to update the departure
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/departures/update", true);
+        xhr.onload = function () {
+            // Handle the response from the server
+            if (xhr.status === 200) {
+                alert("Departure updated successfully!");
+            } else {
+                alert("Failed to update departure. Please try again.");
+            }
+        };
+        xhr.send(formData);
+    }
+
+    function deleteDeparture() {
+        // Perform an AJAX request to delete the departure
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/departures/delete", true);
+        xhr.onload = function () {
+            // Handle the response from the server
+            if (xhr.status === 200) {
+                alert("Departure deleted successfully!");
+            } else {
+                alert("Failed to delete departure. Please try again.");
+            }
+        };
+        xhr.send();
+    }
+</script>
+</body>
+</html>

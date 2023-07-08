@@ -29,17 +29,7 @@ public class DepartureService {
 	                .orElseThrow(() -> new IllegalArgumentException("Invalid departure ID: " + id));
 	}
 	public void createDeparture(OpenSkyResponseDeparture departure) {
-//		RestTemplate rt = new RestTemplate();
-//	    URI uri = UriComponentsBuilder.fromHttpUrl("https://opensky-network.org/api/flights/departure")
-//	    					 .queryParam("airport","kCMH")
-//	    					 .queryParam("begin","1686174444")
-//	    					 .queryParam("end","1686178044")
-//	    					 .build()
-//	    					 .toUri();
-//	    
-//	    
-//	    ResponseEntity<String>response = rt.getForEntity(uri, String.class);
-//    	System.out.println(response);
+
         departuresRepository.save(departure);
     }
 	public void updateDeparture(Long id, OpenSkyResponseDeparture updatedDeparture) {

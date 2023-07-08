@@ -6,65 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-     <style>
-   .row-with-border {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-}
-  </style>
+    <style>
+        .row-with-border {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-     <label class="navbar-brand" for="flight-tracking">Flight Tracking</label>
+    <label class="navbar-brand" for="flight-tracking">Flight Tracking</label>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-          <a class="nav-link" href="/index">Index</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
-        </li>
-      </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Index</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/airportArrivalSearch">SearchForm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/arrivals">Arrivals</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/departures">Departures</a>
+            </li>
+        </ul>
     </div>
-  </nav>
+</nav>
 <div class="container">
     <h2>Flight Arrival List</h2>
-    <div class="table-responsive">
-        <div class="table">
-            <div class="thead">
-            <div class="col">ICAO24</div>
-            <div class="col">First Seen</div>
-            <div class="col">Last Seen</div>
-            <div class="col">Est. Arrival Airport</div>
-            <div class="col">Call Sign</div>
-            <div class="col">Est. Arrival Airport Horiz. Distance</div>
-            <div class="col">Est. Arrival Airport Vert. Distance</div>
-            <div class="col">Arrival Airport Candidates Count</div>
-        </div>
-            </div>
-            <div class="tbody">
-            <div th:each="arrival : ${arrivals}" class="row-with-border">
-            	<hr/>
-                <div class="row">
-                <div class="col"><a th:href="@{/arrivals/{id}(id=${arrival.id})}" type="text">[[${arrival.id}]]</a></div>
-                <div class="col" th:text="${arrival.icao24}"></div>
-                <div class="col" th:text="${arrival.firstSeen}"></div>
-                <div class="col" th:text="${arrival.lastSeen}"></div>
-                <div class="col" th:text="${arrival.estArrivalAirport}"></div>
-                <div class="col" th:text="${arrival.callSign}"></div>
-                <div class="col" th:text="${arrival.estArrivalAirportHorizDistance}"></div>
-                <div class="col" th:text="${arrival.estArrivalAirportVertDistance}"></div>
-                <div class="col" th:text="${arrival.arrivalAirportCandidatesCount}"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>ICAO24</th>
+            <th>First Seen</th>
+            <th>Last Seen</th>
+            <th>Est. Arrival Airport</th>
+            <th>Call Sign</th>
+            <th>Est. Arrival Airport Horiz. Distance</th>
+            <th>Est. Arrival Airport Vert. Distance</th>
+            <th>Arrival Airport Candidates Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="arrival : ${arrivals}" class="row-with-border">
+            <td><a th:href="@{/arrivals/{id}(id=${arrival.id})}" type="text">[[${arrival.id}]]</a></td>
+            <td th:text="${arrival.icao24}"></td>
+            <td th:text="${arrival.firstSeen}"></td>
+            <td th:text="${arrival.lastSeen}"></td>
+            <td th:text="${arrival.estArrivalAirport}"></td>
+            <td th:text="${arrival.callSign}"></td>
+            <td th:text="${arrival.estArrivalAirportHorizDistance}"></td>
+            <td th:text="${arrival.estArrivalAirportVertDistance}"></td>
+            <td th:text="${arrival.arrivalAirportCandidatesCount}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-</div>
-            
+
 <!-- jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
