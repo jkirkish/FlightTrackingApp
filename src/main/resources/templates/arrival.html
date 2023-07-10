@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Arrival Details</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <style>
+        .row-with-border {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <label class="navbar-brand" for="flight-tracking">Flight Tracking</label>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Index</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/airportArrivalSearch">SearchForm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/arrivals">Arrivals</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/departures">Departures</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h2>Arrival Details</h2>
+    <form id="arrivalForm">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td><span th:text="${arrival.id}" data-arrival-id="${arrival.id}"></span></td>
+            </tr>
+            <tr>
+                <th>ICAO24</th>
+                <td><input type="text" th:field="${arrival.icao24}"></td>
+            </tr>
+            <tr>
+                <th>First Seen</th>
+                <td><span th:text="${firstSeenFormatted}"></span></td>
+            </tr>
+            <tr>
+                <th>Est. Arrival Airport</th>
+                <td><input type="text" th:field="${arrival.estArrivalAirport}"></td>
+            </tr>
+            <tr>
+                <th>Last Seen</th>
+                <td><span th:text="${lastSeenFormatted}"></span></td>
+            </tr>
+            <tr>
+                <th>Call Sign</th>
+                <td><input type="text" th:field="${arrival.callSign}"></td>
+                </tr>
+                <tr>
+                    <th>Est. Arrival Airport Horiz. Distance</th>
+                    <td><input type="text" th:field="${arrival.estArrivalAirportHorizDistance}"></td>
+                </tr>
+                <tr>
+                    <th>Est. Arrival Airport Vert. Distance</th>
+                    <td><input type="text" th:field="${arrival.estArrivalAirportVertDistance}"></td>
+                </tr>
+                <tr>
+                    <th>Arrival Airport Candidates Count</th>
+                    <td><input type="text" th:field="${arrival.arrivalAirportCandidatesCount}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="updateArrival()">Update</button>
+            <button type="button" onclick="deleteArrival()">Delete</button>
+        </form>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+    function updateArrival() {
+        // Retrieve form data
+        var form = document.getElementById("arrivalForm");
+        var formData = new FormData(form);
+        var arrivalId = document.querySelector('span[data-arrival-id]').innerText;
+        
+        // Perform an AJAX request to update the arrival
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/arrivals/update/" + arrivalId, true);
+        xhr.onload = function () {
+            // Handle the response from the server
+            if (xhr.status === 200) {
+                alert("Arrival updated successfully!");
+                // Redirect to the arrivals page
+                window.location.href = "/arrivals";
+            } else {
+                alert("Failed to update arrival. Please try again.");
+            }
+        };
+        xhr.send(formData);
+    }
+
+    function deleteArrival() {
+        // Retrieve the arrival ID
+        var arrivalId = document.querySelector('span[data-arrival-id]').innerText;
+
+        // Perform an AJAX request to delete the arrival
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/arrivals/delete/" + arrivalId, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = function () {
+            // Handle the response from the server
+            if (xhr.status === 200) {
+                alert("Arrival deleted successfully!");
+                // Redirect to the arrivals page
+                window.location.href = "/arrivals";
+            } else {
+                alert("Failed to delete arrival. Please try again.");
+            }
+        };
+        xhr.send();
+    }
+    </script>
+    </body>
+    </html>

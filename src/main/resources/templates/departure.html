@@ -40,11 +40,11 @@
             <tbody>
             <tr>
                 <th>Id</th>
-                <td><span th:text="${departure.id}"></span></td>
+                <td><span th:text="${departure.id}" data-departure-id="${departure.id}"></span></td>
             </tr>
             <tr>
                 <th>ICAO24</th>
-                <td><span th:text="${departure.icao24}"></span></td>
+                <td><input type="text" th:field="${departure.icao24}"></td>
             </tr>
             <tr>
                 <th>First Seen</th>
@@ -52,7 +52,7 @@
             </tr>
             <tr>
                 <th>Est. Departure Airport</th>
-                <td><span th:text="${departure.estDepartureAirport}"></span></td>
+                <td><input type="text" th:field="${departure.estDepartureAirport}"></td>
             </tr>
             <tr>
                 <th>Last Seen</th>
@@ -60,19 +60,19 @@
             </tr>
             <tr>
                 <th>Call Sign</th>
-                <td><span th:text="${departure.callSign}"></span></td>
+                <td><input type="text" th:field="${departure.callSign}"></td>
             </tr>
             <tr>
                 <th>Est. Departure Airport Horiz. Distance</th>
-                <td><span th:text="${departure.estDepartureAirportHorizDistance}"></span></td>
+                <td><input type="text" th:field=="${departure.estDepartureAirportHorizDistance}"></td>
             </tr>
             <tr>
                 <th>Est. Departure Airport Vert. Distance</th>
-                <td><span th:text="${departure.estDepartureAirportVertDistance}"></span></td>
+                <td><input type="text" th:field="${departure.estDepartureAirportVertDistance}"></td>
             </tr>
             <tr>
                 <th>Departure Airport Candidates Count</th>
-                <td><span th:text="${departure.departureAirportCandidatesCount}"></span></td>
+                <td><input type="text" th:field="${departure.departureAirportCandidatesCount}"></td>
             </tr>
             </tbody>
         </table>
@@ -86,33 +86,43 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script>
-    function updateDeparture() {
-        // Retrieve form data
-        var form = document.getElementById("departureForm");
-        var formData = new FormData(form);
+function updateDeparture() {
+    // Retrieve form data
+    var form = document.getElementById("departureForm");
+    var formData = new FormData(form);
+    var departureId = document.querySelector('span[data-departure-id]').innerText;
+    
+    // Perform an AJAX request to update the departure
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/departures/update/" + departureId, true);
+    xhr.onload = function () {
+        // Handle the response from the server
+        if (xhr.status === 200) {
+            alert("Departure updated successfully!");
+            // Redirect to the departures page
+            window.location.href = "/departures";
+        } else {
+            alert("Failed to update departure. Please try again.");
+        }
+    };
+    xhr.send(formData);
+}
 
-        // Perform an AJAX request to update the departure
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/departures/update", true);
-        xhr.onload = function () {
-            // Handle the response from the server
-            if (xhr.status === 200) {
-                alert("Departure updated successfully!");
-            } else {
-                alert("Failed to update departure. Please try again.");
-            }
-        };
-        xhr.send(formData);
-    }
 
     function deleteDeparture() {
+        // Retrieve the departure ID
+        var departureId = document.querySelector('span[data-departure-id]').innerText;
+
         // Perform an AJAX request to delete the departure
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/departures/delete", true);
+        xhr.open("POST", "/departures/delete/" + departureId, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onload = function () {
             // Handle the response from the server
             if (xhr.status === 200) {
                 alert("Departure deleted successfully!");
+                // Redirect to the departures page
+                window.location.href = "/departures";
             } else {
                 alert("Failed to delete departure. Please try again.");
             }

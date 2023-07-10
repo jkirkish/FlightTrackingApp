@@ -36,11 +36,6 @@ public class DepartureService {
         OpenSkyResponseDeparture existingDeparture = departuresRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid departure ID: " + id));
 
-        // Update the fields of the existing departure entity with the new values
-        existingDeparture.setIcao24(updatedDeparture.getIcao24());
-        existingDeparture.setFirstSeen(updatedDeparture.getFirstSeen());
-       
-
         departuresRepository.save(existingDeparture);
     }
 	  public void deleteDeparture(Long id) {
