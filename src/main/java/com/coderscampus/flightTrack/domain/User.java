@@ -29,7 +29,7 @@ public class User {
 	private String phone;
 	private LocalDate registrationDate;
 	private Address address;
-//	private Set<Authorities> authorities = new HashSet<>();
+	private Set<Authorities> authorities = new HashSet<>();
 	
 			
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,13 +92,13 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-//	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="user")
-//	public Set<Authorities> getAuthorities() {
-//	    return authorities;
-//	 }
-//	public void setAuthorities(Set<Authorities> authorities) {
-//	    this.authorities = authorities;
-//	 }
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="user")
+	public Set<Authorities> getAuthorities() {
+	    return authorities;
+	 }
+	public void setAuthorities(Set<Authorities> authorities) {
+	    this.authorities = authorities;
+	 }
 
 	@Override
 	public String toString() {

@@ -26,7 +26,7 @@ public class FlightArrivalsController {
     @GetMapping("/arrivals")
     public String getArrivalList(Model model) {
         // Logic to retrieve the arrivals data and pass it to the view
-        // Example:
+        
         List<OpenSkyResponseArrival> arrivals = arrivalService.getArrivalList();
         model.addAttribute("arrivals", arrivals);
         return "arrivals";
