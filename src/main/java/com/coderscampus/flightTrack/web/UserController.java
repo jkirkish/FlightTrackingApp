@@ -48,6 +48,7 @@ public class UserController {
 	}
 	@PostMapping("/register")
 	public String postCreateUser(User user) {
+		System.out.println(user.toString());
 		userService.saveUser(user);
 		return "redirect:/registerConfirmation";
 	}

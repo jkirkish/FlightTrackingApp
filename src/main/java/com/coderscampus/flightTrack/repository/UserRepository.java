@@ -13,7 +13,7 @@ import com.coderscampus.flightTrack.domain.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	// select * from users where username = username
-	User findByUsername(String username);
+	//User findByUsername(String username);
 	
 	//select * from users where password = : password
 	List<User>findByPassword(String password);
@@ -36,7 +36,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	//select * from users where lastname = :lastName and username 
 	List<User>findBylastNameAndUsername(String lastName, String username);
 
-	List<User> findByUsername1(String username);
+	List<User> findByUsername(String username);
 
 	
 	

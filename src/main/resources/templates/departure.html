@@ -44,39 +44,38 @@
             </tr>
             <tr>
                 <th>ICAO24</th>
-                <td><input type="text" th:field="${departure.icao24}"></td>
+                <td><span th:text="${departure.icao24}"></span></td>
             </tr>
             <tr>
-                <th>First Seen</th>
+                <th>First Seen(Human Readable Date)</th>
                 <td><span th:text="${firstSeenFormatted}"></span></td>
             </tr>
             <tr>
                 <th>Est. Departure Airport</th>
-                <td><input type="text" th:field="${departure.estDepartureAirport}"></td>
+                <td><span th:text="${departure.estDepartureAirport}"></span></td>
             </tr>
             <tr>
-                <th>Last Seen</th>
+                <th>Last Seen(Human Readable Date)</th>
                 <td><span th:text="${lastSeenFormatted}"></span></td>
             </tr>
             <tr>
                 <th>Call Sign</th>
-                <td><input type="text" th:field="${departure.callSign}"></td>
+                <td><span th:text="${departure.callSign}"></span></td>
             </tr>
             <tr>
                 <th>Est. Departure Airport Horiz. Distance</th>
-                <td><input type="text" th:field=="${departure.estDepartureAirportHorizDistance}"></td>
+                <td><span th:text="${departure.estDepartureAirportHorizDistance}"></span></td>
             </tr>
             <tr>
                 <th>Est. Departure Airport Vert. Distance</th>
-                <td><input type="text" th:field="${departure.estDepartureAirportVertDistance}"></td>
+                <td><span th:text="${departure.estDepartureAirportVertDistance}"></span></td>
             </tr>
             <tr>
                 <th>Departure Airport Candidates Count</th>
-                <td><input type="text" th:field="${departure.departureAirportCandidatesCount}"></td>
+                <td><span th:text="${departure.departureAirportCandidatesCount}"></span></td>
             </tr>
             </tbody>
         </table>
-        <button type="button" onclick="updateDeparture()">Update</button>
         <button type="button" onclick="deleteDeparture()">Delete</button>
     </form>
 </div>
@@ -86,29 +85,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script>
-function updateDeparture() {
-    // Retrieve form data
-    var form = document.getElementById("departureForm");
-    var formData = new FormData(form);
-    var departureId = document.querySelector('span[data-departure-id]').innerText;
-    
-    // Perform an AJAX request to update the departure
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/departures/update/" + departureId, true);
-    xhr.onload = function () {
-        // Handle the response from the server
-        if (xhr.status === 200) {
-            alert("Departure updated successfully!");
-            // Redirect to the departures page
-            window.location.href = "/departures";
-        } else {
-            alert("Failed to update departure. Please try again.");
-        }
-    };
-    xhr.send(formData);
-}
-
-
     function deleteDeparture() {
         // Retrieve the departure ID
         var departureId = document.querySelector('span[data-departure-id]').innerText;

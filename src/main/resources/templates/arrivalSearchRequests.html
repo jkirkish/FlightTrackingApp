@@ -39,7 +39,7 @@
           <th>End Date</th>
       </tr>
       <tr th:each="search : ${arrivalSearch}">
-          <td th:text="${search.id}"></td>
+          <td><a th:href="@{'/search/' + ${search.id}}"><span th:text="${search.id}"></span></a></td>
           <td th:text="${search.searchType}"></td>
           <td th:text="${search.airport}"></td>
           <td th:text="${search.startDate}"></td>

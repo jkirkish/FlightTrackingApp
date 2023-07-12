@@ -44,39 +44,38 @@
             </tr>
             <tr>
                 <th>ICAO24</th>
-                <td><input type="text" th:field="${arrival.icao24}"></td>
+                <td><<span th:text="${arrival.icao24}"></span></td>
             </tr>
             <tr>
-                <th>First Seen</th>
+                <th>First Seen(Human Readable Date)</th>
                 <td><span th:text="${firstSeenFormatted}"></span></td>
             </tr>
             <tr>
                 <th>Est. Arrival Airport</th>
-                <td><input type="text" th:field="${arrival.estArrivalAirport}"></td>
+                <td><span th:text="${arrival.estArrivalAirport}"></span></td>
             </tr>
             <tr>
-                <th>Last Seen</th>
+                <th>Last Seen(Human Readable Date)</th>
                 <td><span th:text="${lastSeenFormatted}"></span></td>
             </tr>
             <tr>
                 <th>Call Sign</th>
-                <td><input type="text" th:field="${arrival.callSign}"></td>
+                <td><span th:text="${arrival.callSign}"></span></td>
                 </tr>
                 <tr>
                     <th>Est. Arrival Airport Horiz. Distance</th>
-                    <td><input type="text" th:field="${arrival.estArrivalAirportHorizDistance}"></td>
+                    <td><span th:text="${arrival.estArrivalAirportHorizDistance}"></span></td>
                 </tr>
                 <tr>
                     <th>Est. Arrival Airport Vert. Distance</th>
-                    <td><input type="text" th:field="${arrival.estArrivalAirportVertDistance}"></td>
+                    <td><span th:text="${arrival.estArrivalAirportVertDistance}"></span></td>
                 </tr>
                 <tr>
                     <th>Arrival Airport Candidates Count</th>
-                    <td><input type="text" th:field="${arrival.arrivalAirportCandidatesCount}"></td>
+                    <td><span th:text="${arrival.arrivalAirportCandidatesCount}"></span></td>
                 </tr>
                 </tbody>
             </table>
-            <button type="button" onclick="updateArrival()">Update</button>
             <button type="button" onclick="deleteArrival()">Delete</button>
         </form>
     </div>
@@ -86,28 +85,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
-    function updateArrival() {
-        // Retrieve form data
-        var form = document.getElementById("arrivalForm");
-        var formData = new FormData(form);
-        var arrivalId = document.querySelector('span[data-arrival-id]').innerText;
-        
-        // Perform an AJAX request to update the arrival
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/arrivals/update/" + arrivalId, true);
-        xhr.onload = function () {
-            // Handle the response from the server
-            if (xhr.status === 200) {
-                alert("Arrival updated successfully!");
-                // Redirect to the arrivals page
-                window.location.href = "/arrivals";
-            } else {
-                alert("Failed to update arrival. Please try again.");
-            }
-        };
-        xhr.send(formData);
-    }
-
     function deleteArrival() {
         // Retrieve the arrival ID
         var arrivalId = document.querySelector('span[data-arrival-id]').innerText;

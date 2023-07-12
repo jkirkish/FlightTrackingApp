@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Search Information</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+</head>
+<body>
+<div class="container">
+    <h1>Edit Search Information</h1>
+    <form id="editForm" action="/arrivalSearchRequests" method="post">
+        <input type="hidden" name="id" th:value="${search.id}">
+        <div class="form-group">
+            <label for="searchType">Search Type:</label>
+            <input type="text" class="form-control" id="searchType" name="searchType" th:value="${search.searchType}">
+        </div>
+        <div class="form-group">
+            <label for="airport">Airport:</label>
+            <input type="text" class="form-control" id="airport" name="airport" th:value="${search.airport}">
+        </div>
+        <div class="form-group">
+            <label for="startDate">Start Date:</label>
+            <input type="text" class="form-control" id="startDate" name="startDate" th:value="${search.startDate}">
+        </div>
+        <div class="form-group">
+            <label for="endDate">End Date:</label>
+            <input type="text" class="form-control" id="endDate" name="endDate" th:value="${search.endDate}">
+        </div>
+        <div class="btn-group my-4"> 
+            <button type="button" class="btn btn-primary mr-2" onclick="saveChanges()">Save Changes</button>
+            <button type="button" class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+        </div>
+    </form>
+</div>
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+function saveChanges() {
+    if (confirm("Are you sure you want to save changes?")) {
+        var formData = new FormData(document.getElementById("editForm"));
+        var searchId = document.querySelector('input[name="id"]').value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/search/save/" + searchId, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert("Changes saved successfully!");
+                // Optionally perform additional actions after saving changes
+            } else {
+                alert("Failed to save changes. Please try again.");
+            }
+        };
+        xhr.send(formData);
+    }
+}
+
+function confirmDelete() {
+    if (confirm("Are you sure you want to delete this search?")) {
+        var searchId = document.querySelector('input[name="id"]').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/search/delete/" + searchId, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert("Search deleted successfully!");
+                // Optionally perform additional actions after deleting the search
+            } else {
+                alert("Failed to delete search. Please try again.");
+            }
+        };
+        xhr.send();
+    }
+}
+</script>
+
+
+</body>
+</html>

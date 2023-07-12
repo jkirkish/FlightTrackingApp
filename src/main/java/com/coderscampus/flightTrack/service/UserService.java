@@ -19,7 +19,7 @@ public class UserService {
 	private UserRepository userRepo;
 
 	public List<User> findByUsername(String username) {
-		return userRepo.findByUsername1(username);
+		return userRepo.findByUsername(username);
 	}
 
 	public List<User> findByPassword(String password) {
