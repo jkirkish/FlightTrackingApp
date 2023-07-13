@@ -74,7 +74,39 @@ function confirmDelete() {
     }
 }
 </script>
+<script>
+// JavaScript code for validating and formatting input fields
+document.getElementById("searchForm").addEventListener("submit", function(event) {
+    var searchTypeInput = document.getElementById("searchtype");
+    var airportInput = document.getElementById("airport");
+    var startInput = document.getElementById("start");
+    var endInput = document.getElementById("end");
 
+    // Validate Search Type
+    var searchType = searchTypeInput.value.trim().toLowerCase();
+    if (searchType !== "arrival" && searchType !== "departure") {
+        alert("Search Type must be either 'Arrival' or 'Departure'");
+        event.preventDefault();
+        return false;
+    }
+
+    // Validate Airport (4-letter ICAO code)
+    var airportPattern = /^[A-Z]{4}$/;
+    if (!airportPattern.test(airportInput.value.trim())) {
+        alert("Airport must be a 4-letter ICAO code");
+        event.preventDefault();
+        return false;
+    }
+
+    // Validate Date and Time Format (MM-dd-yyyy HH:mm:ss)
+    var dateTimePattern = /^\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}$/;
+    if (!dateTimePattern.test(startInput.value.trim()) || !dateTimePattern.test(endInput.value.trim())) {
+        alert("Start and End Time must be in the format 'MM-dd-yyyy HH:mm:ss'");
+        event.preventDefault();
+        return false;
+    }
+});
+</script>
 
 </body>
 </html>
