@@ -1,33 +1,36 @@
 package com.coderscampus.flightTrack.service;
 
-import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.coderscampus.flightTrack.domain.Address;
+import com.coderscampus.flightTrack.domain.Role;
 import com.coderscampus.flightTrack.domain.User;
 import com.coderscampus.flightTrack.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService{
 
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private PasswordEncoder encoder;
 
-	public List<User> findByUsername(String username) {
+	public Optional<User> findByUsername(String username) {
 		return userRepo.findByUsername(username);
 	}
 
 	public List<User> findByPassword(String password) {
 		return userRepo.findByPassword(password);
-	}
-
-	public List<User> findByEmail(String email) {
-		return userRepo.findByemail(email);
 	}
 
 	public List<User> findByPhone(String phone) {
@@ -81,6 +84,18 @@ public class UserService {
 	public void delete(Long userId) {
 		userRepo.deleteById(userId);
 
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("In the user details service");
+		
+		if(!username.equals("Ethan")) throw new UsernameNotFoundException("not Ethan");
+		
+		Set<Role> roles = new HashSet<>();
+		roles.add(new Role(1, "USER"));
+		
+		return new User(1L,"Ethan", "", "", "", "","", null ,null, roles);
 	}
 
 }

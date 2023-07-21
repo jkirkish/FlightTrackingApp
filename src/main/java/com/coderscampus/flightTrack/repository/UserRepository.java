@@ -2,6 +2,7 @@ package com.coderscampus.flightTrack.repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,7 +26,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	List<User>findBylastName(String lastName);
 	
 	//select * from email where email = : email
-	List<User>findByemail(String email);
+	List<User>findByEmail(String email);
 	
 	//select * from phone where phone = : phone
 	List<User>findByphone(String phone);
@@ -36,7 +37,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	//select * from users where lastname = :lastName and username 
 	List<User>findBylastNameAndUsername(String lastName, String username);
 
-	List<User> findByUsername(String username);
+	Optional<User> findByUsername(String username);
 
 	
 	
