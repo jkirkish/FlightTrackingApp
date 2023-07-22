@@ -3,6 +3,7 @@ package com.coderscampus.flightTrack.domain;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -36,19 +37,21 @@ public class User implements UserDetails{
 	private String phone;
 	private LocalDate registrationDate;
 	private Address address;
+	private Boolean expired;
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 		name="user_role_junction",
-		joinColumns = {@JoinColumn(name="user_id")},
-		inverseJoinColumns = {@JoinColumn(name="role_id")}
-			)
+		joinColumns = @JoinColumn(name="user_id"),
+		inverseJoinColumns = @JoinColumn(name="role_id"))
 	private Set<Role> authorities;
+	private Boolean locked;
+	private Boolean credentials;
+	private Boolean enabled;
 	
 	public User() {
 		super();
-		this.authorities = new HashSet<Role>();
+		this.authorities = new HashSet<>();
 	}
-	
 	
 	public User(Long id, String username, String password, String firstName, String lastName, String email,
 			String phone, LocalDate registrationDate, Address address, Set<Role> authorities) {
@@ -74,6 +77,7 @@ public class User implements UserDetails{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Column(unique=true)
 	@Override
 	public String getUsername() {
 		return username;
@@ -162,8 +166,10 @@ public class User implements UserDetails{
 	}
 	@Override
 	public boolean isAccountNonExpired() {
-		
 		return true;
+	}
+	public void setAccountNonExpired(Boolean expired) {
+		 this.expired = expired;
 	}
 	
 	@Override
@@ -171,19 +177,24 @@ public class User implements UserDetails{
 		
 		return true;
 	}
+	public void setAccountNonLocked(Boolean locked) {
+		 this.locked = locked;
+	}
 	@Override
 	public boolean isCredentialsNonExpired() {
 		
 		return true;
 	}
+	public void setCredentialsNonExpired(Boolean credentials) {
+		 this.credentials = credentials;
+	}
 	@Override
 	public boolean isEnabled() {
-		
 		return true;
 	}
-	
-	
-
+	public void setEnabled(Boolean enabled) {
+		 this.enabled = enabled;
+	}
 
 	   
 	   

@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import com.coderscampus.flightTrack.domain.User;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -90,12 +92,7 @@ public class UserService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println("In the user details service");
 		
-		if(!username.equals("Ethan")) throw new UsernameNotFoundException("not Ethan");
-		
-		Set<Role> roles = new HashSet<>();
-		roles.add(new Role(1, "USER"));
-		
-		return new User(1L,"Ethan", "", "", "", "","", null ,null, roles);
+		 return userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
 	}
 
 }
