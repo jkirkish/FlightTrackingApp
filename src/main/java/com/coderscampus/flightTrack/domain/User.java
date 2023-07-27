@@ -40,7 +40,7 @@ public class User implements UserDetails{
 	private LocalDate registrationDate;
 	private Address address;
 	private Boolean expired;
-	private Set<Role> authorities;
+	private Collection<Role> authorities;
 	private Boolean locked;
 	private Boolean credentials;
 	private Boolean enabled;
@@ -152,9 +152,9 @@ public class User implements UserDetails{
 		return Objects.equals(id, other.id);
 	}
 	
-	@ElementCollection(fetch = FetchType.LAZY, targetClass = Role.class)
+	@ElementCollection(fetch = FetchType.EAGER, targetClass = Role.class)
     @Enumerated(EnumType.STRING)
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 		name="user_role_junction",
 		joinColumns = @JoinColumn(name="user_id"),
@@ -163,7 +163,7 @@ public class User implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.authorities;
 	}
-	public void setAuthorities(Set<Role>authorities) {
+	public void setAuthorities(Collection<Role>authorities) {
 		this.authorities = authorities;
 	}
 	@Override
