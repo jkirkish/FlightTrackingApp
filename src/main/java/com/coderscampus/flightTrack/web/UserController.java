@@ -3,29 +3,21 @@ package com.coderscampus.flightTrack.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.coderscampus.flightTrack.domain.User;
 import com.coderscampus.flightTrack.service.UserService;
 
-@RestController
-@RequestMapping("/user")
-@CrossOrigin("*")
+@Controller
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/")
-    public String helloUserController() {
-        return "User access level";	
-    }
 	
 	
 	@GetMapping("/users")

@@ -3,7 +3,6 @@ package com.coderscampus.flightTrack.domain;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,7 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,11 +40,6 @@ public class User implements UserDetails{
 	private LocalDate registrationDate;
 	private Address address;
 	private Boolean expired;
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(
-		name="user_role_junction",
-		joinColumns = @JoinColumn(name="user_id"),
-		inverseJoinColumns = @JoinColumn(name="role_id"))
 	private Set<Role> authorities;
 	private Boolean locked;
 	private Boolean credentials;
@@ -155,8 +152,13 @@ public class User implements UserDetails{
 		return Objects.equals(id, other.id);
 	}
 	
-	
-	
+	@ElementCollection(fetch = FetchType.LAZY, targetClass = Role.class)
+    @Enumerated(EnumType.STRING)
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+		name="user_role_junction",
+		joinColumns = @JoinColumn(name="user_id"),
+		inverseJoinColumns = @JoinColumn(name="role_id"))
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.authorities;
