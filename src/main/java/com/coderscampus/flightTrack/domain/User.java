@@ -6,8 +6,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -27,7 +25,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails{
+public class User{
 	
 	
 	private Long id;
@@ -39,32 +37,10 @@ public class User implements UserDetails{
 	private String phone;
 	private LocalDate registrationDate;
 	private Address address;
-	private Boolean expired;
-	private Collection<Role> authorities;
-	private Boolean locked;
-	private Boolean credentials;
-	private Boolean enabled;
 	
-	public User() {
-		super();
-		this.authorities = new HashSet<>();
-	}
 	
-	public User(Long id, String username, String password, String firstName, String lastName, String email,
-			String phone, LocalDate registrationDate, Address address, Set<Role> authorities) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-		this.registrationDate = registrationDate;
-		this.address = address;
-		this.authorities = authorities;
-	}
-
+	
+	
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
@@ -75,14 +51,14 @@ public class User implements UserDetails{
 		this.id = id;
 	}
 	@Column(unique=true)
-	@Override
+	
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	@Override
+
 	public String getPassword() {
 		return password;
 	}
@@ -152,51 +128,7 @@ public class User implements UserDetails{
 		return Objects.equals(id, other.id);
 	}
 	
-	@ElementCollection(fetch = FetchType.EAGER, targetClass = Role.class)
-    @Enumerated(EnumType.STRING)
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(
-		name="user_role_junction",
-		joinColumns = @JoinColumn(name="user_id"),
-		inverseJoinColumns = @JoinColumn(name="role_id"))
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.authorities;
-	}
-	public void setAuthorities(Collection<Role>authorities) {
-		this.authorities = authorities;
-	}
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-	public void setAccountNonExpired(Boolean expired) {
-		 this.expired = expired;
-	}
 	
-	@Override
-	public boolean isAccountNonLocked() {
-		
-		return true;
-	}
-	public void setAccountNonLocked(Boolean locked) {
-		 this.locked = locked;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		
-		return true;
-	}
-	public void setCredentialsNonExpired(Boolean credentials) {
-		 this.credentials = credentials;
-	}
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-	public void setEnabled(Boolean enabled) {
-		 this.enabled = enabled;
-	}
 
 	   
 	   

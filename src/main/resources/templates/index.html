@@ -65,7 +65,8 @@
           <a class="nav-link" href="/register">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/airportArrivalSearch">SearchForm</a>
+          <!-- Add the tooltip to the link -->
+          <a class="nav-link" href="/airportArrivalSearch" data-toggle="tooltip" data-placement="bottom" title="Search airport arrivals or airport departures in a given timeframe">SearchForm</a>
         </li>
       </ul>
     </div>
@@ -75,6 +76,12 @@
     <h1 class="highlight">WELCOME TO FLIGHT TRACKING</h1>
   </div>
 
+  <!-- Initialize Bootstrap tooltips -->
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
 </body>
 
 </html>

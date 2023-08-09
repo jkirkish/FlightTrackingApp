@@ -77,6 +77,7 @@
             </tbody>
         </table>
         <button type="button" onclick="deleteDeparture()">Delete</button>
+        <button type="button" onclick="goToDeparturesPage()">Back</button>
     </form>
 </div>
 
@@ -85,6 +86,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script>
+
+	function goToDeparturesPage() {
+		window.location.href = "/departures";
+	}
     function deleteDeparture() {
         // Retrieve the departure ID
         var departureId = document.querySelector('span[data-departure-id]').innerText;

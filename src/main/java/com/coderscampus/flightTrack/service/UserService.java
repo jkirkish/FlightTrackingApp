@@ -1,31 +1,21 @@
 package com.coderscampus.flightTrack.service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.coderscampus.flightTrack.domain.User;
-
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.coderscampus.flightTrack.domain.Address;
-import com.coderscampus.flightTrack.domain.Role;
 import com.coderscampus.flightTrack.domain.User;
 import com.coderscampus.flightTrack.repository.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService{
 
 	@Autowired
 	private UserRepository userRepo;
-	@Autowired
-	private PasswordEncoder encoder;
+	
 
 	public Optional<User> findByUsername(String username) {
 		return userRepo.findByUsername(username);
@@ -88,11 +78,6 @@ public class UserService implements UserDetailsService{
 
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("In the user details service");
-		
-		 return userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
-	}
+	
 
 }

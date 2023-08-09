@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <th>ICAO24</th>
-                <td><<span th:text="${arrival.icao24}"></span></td>
+                <td><span th:text="${arrival.icao24}"></span></td>
             </tr>
             <tr>
                 <th>First Seen(Human Readable Date)</th>
@@ -77,6 +77,7 @@
                 </tbody>
             </table>
             <button type="button" onclick="deleteArrival()">Delete</button>
+            <button type="button" onclick="goToArrivalsPage()">Back</button>
         </form>
     </div>
 
@@ -85,6 +86,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
+    function goToArrivalsPage() {
+        window.location.href = "/arrivals";
+    }
+    
     function deleteArrival() {
         // Retrieve the arrival ID
         var arrivalId = document.querySelector('span[data-arrival-id]').innerText;
