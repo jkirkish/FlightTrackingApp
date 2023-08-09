@@ -75,6 +75,10 @@
     		<p>The given time interval must not be larger than seven days!</p>
     	<div>
         <button type="submit" class="btn btn-primary">Search</button>
+        <!-- Button to redirect to Arrivals -->
+        <button type="button" class="btn btn-secondary" onclick="redirectToPage('arrival')">Go to Arrivals</button>
+        <!-- Button to redirect to Departures -->
+        <button type="button" class="btn btn-secondary" onclick="redirectToPage('departure')">Go to Departures</button>
     </form>
 </div>
 <!-- jQuery and Bootstrap JS -->
@@ -128,6 +132,21 @@
         }
     });
 </script>
+<script>
+// JavaScript code for validating and formatting input fields
+document.getElementById("searchForm").addEventListener("submit", function(event) {
+    // ... (validation code)
+});
 
+// Function to redirect based on search type
+function redirectToPage(searchType) {
+    searchType = searchType.toLowerCase();
+    if (searchType === 'arrival' || searchType === 'departure') {
+        window.location.href = '/' + searchType + 's'; // Redirect to either arrivals or departures
+    } else {
+        alert("Invalid search type");
+    }
+}
+</script>
 </body>
 </html>
