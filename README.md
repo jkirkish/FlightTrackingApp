@@ -32,3 +32,7 @@ OpenSky users get 4000 API credits per day. For higher request loads please cont
 Active contributing OpenSky users get a total of 8000 API credits per day. An active user is a user which has an ADS-B receiver that is at least 30% online (measured over the current month).
 
 https://openskynetwork.github.io/opensky-api/rest.html
+
+Here is a youtube demo video
+https://youtu.be/3yu7cZt4lSk
+
