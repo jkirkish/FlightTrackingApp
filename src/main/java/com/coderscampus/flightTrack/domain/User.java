@@ -1,18 +1,17 @@
 package com.coderscampus.flightTrack.domain;
 
+
+
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +24,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User{
+public class User implements UserDetails{
 	
 	
-	private Long id;
+	private Integer id;
 	private String username;
 	private String password;
 	private String firstName;
@@ -37,28 +36,53 @@ public class User{
 	private String phone;
 	private LocalDate registrationDate;
 	private Address address;
+	private Boolean accountNonExpired;
+	private Boolean accountNonLocked;
+	private Boolean enabled;
+	private Boolean expired;
+	private Set<Role> authorities;
+    
+	public User() {
+		super();
+		authorities = new HashSet<>();
+	}
 	
+	public User(String inputUsername, String inputPassword) {
+		this.username = inputUsername;
+		this.password = inputPassword;
+	}
 	
-	
-	
-
+	public User(Integer id, String username, String password, String firstName, String lastName, String email,
+			String phone, LocalDate registrationDate, Address address,Set<Role>authorities) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.registrationDate = registrationDate;
+		this.address = address;
+		this.authorities = authorities;		
+	}
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
+	@Override
 	@Column(unique=true)
-	
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+    @Override
 	public String getPassword() {
 		return password;
 	}
@@ -127,10 +151,53 @@ public class User{
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+	@Override
+	@ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinTable(
+		name="user_role_junction",
+		joinColumns = @JoinColumn(name="user_id"),
+		inverseJoinColumns = @JoinColumn(name="role_id"))
+	public Set<Role> getAuthorities() {
+		
+		return this.authorities;
+	}
 	
-	
-
-	   
-	   
+	public void setAuthorities(Set<Role> authorities) {
+		this.authorities= authorities;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		
+		return true;
+	}
+	public void setAccountNonExpired(Boolean expired) {
+		
+		this.accountNonExpired = expired;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		
+		return true;
+	}
+    public void setAccountNonLocked(Boolean locked) {
+		
+		this.accountNonLocked = locked;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		
+		return true;
+	}
+	public void setCredentialsNonExpired(Boolean expire) {
+		this.expired = expire;
+	}
+	@Override
+	public boolean isEnabled() {
+		
+		return true;
+	}
+	public void setEnabled(Boolean enable) {
+		this.enabled = enable;
+	}     
 
 }

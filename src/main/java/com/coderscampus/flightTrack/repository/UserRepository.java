@@ -11,10 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.coderscampus.flightTrack.domain.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-	// select * from users where username = username
-	//User findByUsername(String username);
+	
 	
 	//select * from users where password = : password
 	List<User>findByPassword(String password);
@@ -37,9 +36,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	//select * from users where lastname = :lastName and username 
 	List<User>findBylastNameAndUsername(String lastName, String username);
 
-	Optional<User> findByUsername(String username);
-
-	
+	@Query("select u from User u " 
+		   + "left join fetch u.authorities " 
+		   + "where username = :username")
+	User findByUsername(String username);
 
 	
 	
