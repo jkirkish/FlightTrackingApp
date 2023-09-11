@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/index">Index</a>
+                <a class="nav-link" href="/api/v1/users/index">Index</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/airportArrivalSearch">SearchForm</a>
@@ -80,16 +80,11 @@
             <button type="button" onclick="goToArrivalsPage()">Back</button>
         </form>
     </div>
-
-    <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
     function goToArrivalsPage() {
         window.location.href = "/arrivals";
     }
-    
+
     function deleteArrival() {
         // Retrieve the arrival ID
         var arrivalId = document.querySelector('span[data-arrival-id]').innerText;
@@ -111,5 +106,11 @@
         xhr.send();
     }
     </script>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/arrival.js"></script>
     </body>
     </html>
