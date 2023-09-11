@@ -62,7 +62,8 @@ public class SecurityConfiguration {
 					.requestMatchers("/search/**").authenticated()
 					.requestMatchers("/api/v1/users/login").permitAll()
 					.requestMatchers("/user/**").hasAnyRole("ADMIN","USER")
-					.requestMatchers("/api/v1/users/users/**").hasRole("ADMIN");
+					.requestMatchers("/api/v1/users/users/**").hasRole("ADMIN")
+					.anyRequest().authenticated();
 
 		})
 
