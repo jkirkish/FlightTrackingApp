@@ -61,9 +61,9 @@ public class SecurityConfiguration {
 					.requestMatchers("/api/v1/users/index").authenticated()
 					.requestMatchers("/search/**").authenticated()
 					.requestMatchers("/api/v1/users/login").permitAll()
-					.requestMatchers("/user/**").hasAnyRole("ADMIN","USER")
-					.requestMatchers("/api/v1/users/users/**").hasRole("ADMIN")
-					.anyRequest().authenticated();
+					.requestMatchers("/api/v1/users//user/**").hasAnyRole("ADMIN","USER")
+					.requestMatchers("/api/v1/users/users/**").hasRole("ADMIN");
+					
 
 		})
 
