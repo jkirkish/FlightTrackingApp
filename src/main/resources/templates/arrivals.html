@@ -63,7 +63,9 @@
         </tr>
         </tbody>
     </table>
-    <button class="btn btn-danger" id="deleteAllButton">Delete All</button>
+    <form th:action="@{/arrivals/deleteAllArrivals}" method="post" id="deleteAllForm">
+       <button class="btn btn-danger" type="submit">Delete All</button>
+    </form>
 </div>
 
 <script>
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         
-         fetch('/deleteAllEntries', {
+         fetch('/deleteAllArrivals', {
              method: 'DELETE',
          })
          .then(response => {

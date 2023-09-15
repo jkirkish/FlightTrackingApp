@@ -63,7 +63,9 @@
         </tr>
         </tbody>
     </table>
-    <button class="btn btn-danger" id="deleteAllButton">Delete All</button>
+    <form th:action="@{/departures/deleteAll}" method="post" id="deleteAllForm">
+       <button class="btn btn-danger" type="submit">Delete All</button>
+    </form>
 </div>
 
 <script>

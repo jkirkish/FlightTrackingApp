@@ -62,15 +62,10 @@ public class FlightArrivalsController {
         arrivalService.deleteArrival(id);
         return "redirect:/arrivals";
     }
-    @PostMapping("/arrivals/deleteAllEntries")
-    @ResponseBody 
-    public ResponseEntity<String> deleteAllEntries() {
-        try {
-            arrivalService.deleteAllArrivals();
-            return ResponseEntity.ok("All entries deleted successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete entries: " + e.getMessage());
-        }
+    @PostMapping("/arrivals/deleteAllArrivals")
+    public String deleteAllArrivals() {
+        arrivalService.deleteAllArrivals(); 
+        return "redirect:/departures"; 
     }
 
 }

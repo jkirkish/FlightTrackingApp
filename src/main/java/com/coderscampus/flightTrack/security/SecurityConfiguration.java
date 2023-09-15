@@ -60,9 +60,12 @@ public class SecurityConfiguration {
 					.requestMatchers("/editSearch/**").authenticated()
 					.requestMatchers("/api/v1/users/index").authenticated()
 					.requestMatchers("/search/**").authenticated()
+					.requestMatchers("/deleteAllDepartureEntries").authenticated()
+					.requestMatchers("/deleteAllArrivals").authenticated()
 					.requestMatchers("/api/v1/users/login").permitAll()
 					.requestMatchers("/api/v1/users//user/**").hasAnyRole("ADMIN","USER")
 					.requestMatchers("/api/v1/users/users/**").hasRole("ADMIN");
+			        
 					
 
 		})
