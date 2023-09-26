@@ -3,11 +3,11 @@ package com.coderscampus.flightTrack.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.coderscampus.flightTrack.domain.Address;
@@ -19,7 +19,7 @@ public class UserService implements UserDetailsService{
 
 	
 	private UserRepository userRepo;
-   
+    
     
 	public UserService(UserRepository userRepo) {
 		super();
@@ -32,6 +32,7 @@ public class UserService implements UserDetailsService{
 
 	public List<User> findByPassword(String password) {
 		return userRepo.findByPassword(password);
+		
 	}
 
 	public List<User> findByPhone(String phone) {
@@ -97,5 +98,7 @@ public class UserService implements UserDetailsService{
 	}
 
 	
-
 }
+
+	
+

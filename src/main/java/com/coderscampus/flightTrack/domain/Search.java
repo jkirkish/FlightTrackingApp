@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 public class Search {
 	
 	private Long id;
+	private User user;
 	private String searchType;
 	private String airport;
 	private String startDate;
@@ -27,6 +28,12 @@ public class Search {
 	}
 	public String getSearchType() {
 		return searchType;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public void setSearchType(String SearchType) {
 		this.searchType = SearchType;

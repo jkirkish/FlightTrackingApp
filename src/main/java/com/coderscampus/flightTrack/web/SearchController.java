@@ -25,6 +25,7 @@ public class SearchController {
 	
 	@Autowired
 	private SearchService searchService;
+
 	
 	@GetMapping("/arrivalSearchRequests")
 	public String getallSearchRequests(ModelMap model){
@@ -35,8 +36,8 @@ public class SearchController {
 	
 	@GetMapping("/airportArrivalSearch")
 	public String getAirportArrivalSearches(ModelMap model) {
-		model.put("arrivalSearch", new Search());
-		return "airportArrivalSearch";
+	    model.put("arrivalSearch", new Search());
+	    return "airportArrivalSearch";
 	}
 	@GetMapping("/search/{id}")
 	public String viewSearch(@PathVariable("id") Long id, Model model) {
