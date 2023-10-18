@@ -22,7 +22,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
 	
    
-    //@Value("${jwt.signingKey}")
+  
 	private String jwtSigningKey = System.getenv("JWT_SIGNING_KEY");
     @Value("${jwt.expirationTimeInMillis}")
     private Long expirationTimeInMillis;
