@@ -50,7 +50,7 @@ public class SecurityConfiguration {
 			request
 
 					.requestMatchers("/api/v1/users/register").permitAll()
-					.requestMatchers("/api/v1/users/adminPage").hasRole("ADMIN")
+					.requestMatchers("/api/v1/users/adminPage").authenticated()
 					.requestMatchers("/airportArrivalSearch/**").authenticated()
 					.requestMatchers("/arrival/**").authenticated()
 					.requestMatchers("/arrivals/**").authenticated()
