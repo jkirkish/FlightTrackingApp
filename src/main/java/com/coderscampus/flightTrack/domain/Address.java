@@ -1,6 +1,6 @@
 package com.coderscampus.flightTrack.domain;
 
-import java.util.Objects;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
